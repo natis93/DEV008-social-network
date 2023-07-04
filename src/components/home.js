@@ -11,3 +11,5 @@ export const home = (onNavigate) => {
     homeDiv.appendChild(buttonLogin);
     return homeDiv;
 };
+
+
