@@ -1,0 +1,23 @@
+/* Estilos para centrar los inputs */
+input {
+  display: block;
+  margin: 10px auto;
+  text-align: center;
+}
+
+/* Estilos para dar color a los botones */
+button {
+  display: block;
+  margin: 10px auto;
+  padding: 5px 10px;
+  background-color: #4CAF50; /* Color de fondo */
+  color: white; /* Color del texto */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Estilos adicionales para resaltar los botones al pasar el cursor */
+button:hover {
+  opacity: 0.8;
+}
