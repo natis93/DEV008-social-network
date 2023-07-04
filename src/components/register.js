@@ -46,3 +46,4 @@ export const Register = (onNavigate) => {
   homeDiv.appendChild(buttonHome);
   return homeDiv;
 };
+//comentario

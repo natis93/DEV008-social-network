@@ -10,3 +10,4 @@ export const Home = (onNavigate) => {
     homeDiv.appendChild(buttonLogin);
     return homeDiv;
   };
+  //comentario
