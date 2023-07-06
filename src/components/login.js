@@ -1,5 +1,6 @@
 export const login = (onNavigate) => {
   const homeDiv = document.createElement("div");
+  homeDiv.className = "container"
   homeDiv.textContent = "Welcome back to the orbit!";
 
   const buttonHome = document.createElement("button");
@@ -21,6 +22,5 @@ export const login = (onNavigate) => {
   buttonHome.addEventListener("click", () => onNavigate("/"));
 
   homeDiv.appendChild(buttonHome);
-  // Retornar el div principal
   return homeDiv;
 };

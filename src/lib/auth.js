@@ -13,11 +13,21 @@ export const signInGoogle  = () => {
 
 
 // getInfo
-  const registerUserName = registerForm.querySelector(".input-user").value;
-  const registerEmail = registerForm.querySelector(".input-email").value;
-  const registerPassword = registerForm.querySelector(".input-password").value;
-  console.log(registerUserName, registerEmail, registerPassword);
-});
+// export const auth = getAuth();
+// createUserWithEmailAndPassword(auth, email, password)
+//   .then((userCredential) => {
+//     // Signed in 
+//     const user = userCredential.user;
+//     // ...
+//   })
+//   .catch((error) => {
+//     const errorCode = error.code;
+//     const errorMessage = error.message;
+//     // ..
+//   });
+
+
+  //signUp
 export const addUser = (email, password) => {
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
@@ -28,11 +38,7 @@ export const addUser = (email, password) => {
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
+      console.log(errorCode, errorMessage)
       // Aquí manejas los errores que puedan ocurrir durante el registro
-      if (error.code === 'auth/invalid-email') {
-        alert('invalid email')
-      }
-
-
     });
 };

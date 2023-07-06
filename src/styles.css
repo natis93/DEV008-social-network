@@ -3,16 +3,19 @@
     margin: 0;
     padding: 0;
 }
+
 @font-face {
     font-family: Poppins;
     font-style: normal ;
     src: url(./fonts/Poppins-family/Poppins-Regular.ttf);
 }
+
 @font-face {
     font-family: Poppins-Bold;
     font-style: bold;
     src: url(./fonts/Poppins-family/Poppins-Bold.ttf);
 }
+
 @font-face {
     font-family: Poppins-Light;
     font-style: light ;
@@ -52,6 +55,7 @@ body{
     flex-direction: column;
     gap: 0.8rem;
 }
+
 .input {
     font-family: Poppins ;
     font-size: 16px;
@@ -65,6 +69,7 @@ body{
     display: flex;
     margin: auto;
 }
+
 .button{
     font-family: Poppins ;
     font-size: 16px;
@@ -90,4 +95,5 @@ body{
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+
 }
