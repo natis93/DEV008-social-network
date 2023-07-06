@@ -1,7 +1,9 @@
+
 import { home } from './components/home.js';
 import { register } from './components/register.js';
 import { login } from './components/login.js';
 const rootDiv = document.getElementById('root');
+
 const routes = {
     '/': home,
     '/register': register,
@@ -18,6 +20,7 @@ const onNavigate = (pathname) => {
 const component = routes[window.location.pathname];
 window.onpopstate = () => {
     rootDiv.appendChild(component(onNavigate));
+    
 };
 
 rootDiv.appendChild(component(onNavigate));
