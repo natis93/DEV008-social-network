@@ -1,5 +1,6 @@
 export const login = (onNavigate) => {
     const homeDiv = document.createElement("div");
+    homeDiv.className = "container"
     homeDiv.textContent = "Welcome back to the orbit!";
 
     const buttonHome = document.createElement("button");
