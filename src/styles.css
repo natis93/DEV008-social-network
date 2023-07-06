@@ -18,25 +18,35 @@
     font-style: light ;
     src: url(./fonts/Poppins-family/Poppins-Light.ttf);
 }
+
 body{
     font-family: Poppins-Bold, Arial, Helvetica, sans-serif;
-    text-align: left;
-    background-image: url(./Images/background_phone.png)
+    height: 100vh;
 }
+
 /*Estilos de la pantalla Register*/
-.div-title{
-    max-width: 88%;
+.container{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-image: url(./Images/background.png);
+    background-size: cover;
+}
+
+.container__title{
+    max-width: 62%;
     color: #ffff;
     font-size: 51px;
     line-height: 3.2rem;
-    margin: 233px auto 29px auto;
 }
-.icon{
-    position: absolute;
+
+.container__icon{
+    display: flex;
     width: 56px;
-    margin: -69px 0px 0 24px;
     height: 49.22px;
 }
+
 .form-register {
     display: flex;
     flex-direction: column;
@@ -69,7 +79,9 @@ body{
     margin: auto;
     padding: 7px 15px;
 }
+
 /*Estilos de la pantalla Home*/
+
 .div-button{
     display: grid;
     place-items: center;

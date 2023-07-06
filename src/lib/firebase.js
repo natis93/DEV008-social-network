@@ -15,25 +15,15 @@ const firebaseConfig = {
   appId: "1:630047055563:web:5fc61c529fd7533cea054e",
   measurementId: "G-K8PCLTY7B2"
 };
-// Initialize Firebase
-/*export const app = initializeApp(firebaseConfig);
-export const auth = getAuth();
-export const provider = new GoogleAuthProvider();*/
-export const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
-// const provider = new GoogleAuthProvider(); */
-// Initialize Cloud Firestore and get a reference to the service
-const db = getFirestore(app);
 
-export function createUser(email, password) {
-  return createUserWithEmailAndPassword(auth, email, password);
-}
-export function signInUser(email, password) {
-  return signInWithEmailAndPassword(auth, email, password);
-}
-export function signInGoogle() {
-  return signInWithPopup(auth, provider); // retorna el resultado de la ejecución de una función
-}
+// Initialize Firebase
+/*export const provider = new GoogleAuthProvider();*/
+const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
+// Initialize Cloud Firestore and get a reference to the service
+export const db = getFirestore(app);
+
+
 export const savePost = (description) => {
   console.log(description);
 }

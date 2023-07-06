@@ -1,11 +1,30 @@
-import { createUser } from '../lib/firebase';
-export const register = (onNavigate) => {
-  const homeDiv = document.createElement('div');
-  const icon = document.createElement('img');
+import { createUser, addUser } from "../lib/auth";
 
-  icon.className = 'icon';
-  homeDiv.appendChild(icon);
-  icon.src = '../Images/icon.png';
+export const register = (onNavigate) => {
+    const homeDiv = document.createElement("div");
+    homeDiv.className = "container";
+
+    const headerDiv = document.createElement("div");
+    headerDiv.className = "container__header";
+    homeDiv.appendChild(headerDiv);
+
+    const iconDiv = document.createElement("div");
+    iconDiv.className = "container__icon";
+    headerDiv.appendChild(iconDiv);
+
+    const icon = document.createElement("img");
+    icon.className = "icon";
+    icon.src = "../Images/icon.png";
+    iconDiv.appendChild(icon);
+    
+    const titleDiv = document.createElement("div");
+    titleDiv.textContent = "Start your adventure here";
+    titleDiv.className = "container__title";
+    headerDiv.appendChild(titleDiv);
+    
+    const buttonHome = document.createElement("button");
+    buttonHome.className = "button button-home";
+    buttonHome.textContent = "Home";
 
   const titleDiv = document.createElement('div');
   titleDiv.textContent = 'Start your adventure here';
@@ -40,23 +59,31 @@ export const register = (onNavigate) => {
   buttonDataRegister.addEventListener('click', (e) => {
     e.preventDefault();
 
-    const registerEmail = inputEmail.value;
-    const registerPassword = inputPassword.value;
-    createUser(registerEmail, registerPassword)
-      .then((userCredential) => {
-        // Registro exitoso
-        const user = userCredential.user;
-        console.log(user);
-        onNavigate('/timeline');
-      })
-      .catch((error) => {
-        // Mostrar mensaje de error
-        errorText.textContent = error.message;
-        errorText.classList.remove('error-text-hidden');
-      });
-  });
-  buttonHome.addEventListener('click', () => onNavigate('/'));
-  form.appendChild(buttonHome);
+    const inputPassword = document.createElement("input");
+    inputPassword.className = "input input-password";
+    inputPassword.type = "password";
+    inputPassword.placeholder = "Password";
+    form.appendChild(inputPassword);
+    
+    const buttonDataRegister = document.createElement("input");
+    buttonDataRegister.className = "button button-register";
+    //buttonDataRegister.textContent = "Register";
+    buttonDataRegister.type = "submit";
+    buttonDataRegister.value = "Register"
+    form.appendChild(buttonDataRegister);
+    homeDiv.appendChild(form);
+
+    buttonDataRegister.addEventListener("click", (e) => {
+        e.preventDefault();
+        const registerUserName = inputUser.value;
+        const registerEmail = inputEmail.value;
+        const registerPassword = inputPassword.value;
+        createUser(registerEmail, registerPassword);
+    });
+    buttonHome.addEventListener("click", () => onNavigate("/"));
+    form.appendChild(buttonHome);
+
+    
 
   const divError = document.createElement('div');
   divError.className = 'div-error';
@@ -67,4 +94,4 @@ export const register = (onNavigate) => {
   divError.appendChild(errorText);
 
   return homeDiv;
-};
+})};
