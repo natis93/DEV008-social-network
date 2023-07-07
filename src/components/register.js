@@ -1,5 +1,3 @@
-import { createUser, addUser } from "../lib/auth";
-
 export const register = (onNavigate) => {
   const homeDiv = document.createElement("div");
   homeDiv.className = "container";
@@ -29,17 +27,20 @@ export const register = (onNavigate) => {
   const form = document.createElement("form");
   form.className = "form-register";
 
+  // Username Input
   const inputUser = document.createElement("input");
   inputUser.className = "input input-user";
   inputUser.type = "text";
   inputUser.placeholder = "Username";
   form.appendChild(inputUser);
 
+  // Email Input
   const inputEmail = document.createElement("input");
   inputEmail.className = "input input-email";
   inputEmail.placeholder = "Email";
   form.appendChild(inputEmail);
 
+  // Password Input
   const inputPassword = document.createElement("input");
   inputPassword.className = "input input-password";
   inputPassword.type = "password";
@@ -48,23 +49,65 @@ export const register = (onNavigate) => {
 
   const buttonDataRegister = document.createElement("input");
   buttonDataRegister.className = "button button-register";
-  //buttonDataRegister.textContent = "Register";
   buttonDataRegister.type = "submit";
-  buttonDataRegister.value = "Register"
+  buttonDataRegister.value = "Register";
   form.appendChild(buttonDataRegister);
   homeDiv.appendChild(form);
+
+  // CODE TO SEE FAILURE TEXT:
+  const failureText = document.createElement("p");
+  failureText.className = "failure-text failure-text-hidden";
+  failureText.classList.add("custom-failure-text");
+  form.appendChild(failureText);
+
 
   buttonDataRegister.addEventListener("click", (e) => {
     e.preventDefault();
     const registerUserName = inputUser.value;
     const registerEmail = inputEmail.value;
     const registerPassword = inputPassword.value;
-    createUser(registerEmail, registerPassword);
+
+    const email = inputEmail.value;
+    const password = inputPassword.value;
+
+    failureText.textContent = "";
+    failureText.classList.add("failure-text-hidden");
+
+    const errorMessages = {
+      emailAndPasswordEmpty: "Spaceship Error, we need your email and password!",
+      passwordEmpty: "Enter a cosmic password!",
+      emailEmpty: "Enter your email",
+      invalidEmail: "Wait! Invalid email!",
+      shortPassword: "Spaceship Error! Your password needs 6 characters!",
+    };
+
+    const validationErrors = [];
+
+    if (email === "" && password === "") {
+      validationErrors.push("emailAndPasswordEmpty");
+    } else if (password === "") {
+      validationErrors.push("passwordEmpty");
+    } else if (email === "") {
+      validationErrors.push("emailEmpty");
+    } else if (email.length === 0 || !email.includes("@") || !email.includes(".")) {
+      validationErrors.push("invalidEmail");
+    } else if (password.length < 6) {
+      validationErrors.push("shortPassword");
+    }
+
+    if (validationErrors.length > 0) {
+      failureText.textContent = errorMessages[validationErrors[0]];
+      failureText.classList.remove("failure-text-hidden");
+    } else {
+      // If no errors proceed with register
+      createUser(registerEmail, registerPassword);
+    }
   });
+  // End errors validation
+
   buttonHome.addEventListener("click", () => onNavigate("/"));
   form.appendChild(buttonHome);
 
-
-
   return homeDiv;
 };
+

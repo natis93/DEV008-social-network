@@ -23,7 +23,7 @@
 }
 
 body{
-    font-family: Poppins-Bold, Arial, Helvetica, sans-serif;
+    font-family: Poppins, Arial, Helvetica, sans-serif;
     height: 100vh;
 }
 
@@ -39,7 +39,9 @@ body{
 
 .container__title{
     max-width: 62%;
+    text-align: center;
     color: #ffff;
+    font-family: Poppins-bold;
     font-size: 51px;
     line-height: 3.2rem;
 }
@@ -97,3 +99,19 @@ body{
     transform: translate(-50%, -50%);
 
 }
+
+/*Styles for failure text*/
+  .input-container p {
+    margin: 5px 0 0 5px;
+    color: whitesmoke;
+    font-size: 14px;
+  }
+
+  .custom-failure-text {
+    text-align: center;
+    font-family: Poppins;
+    font-weight: normal;
+    color: whitesmoke;
+    font-size: 14px;
+  }
+  
