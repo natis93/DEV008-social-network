@@ -1,9 +1,9 @@
 export const home = (onNavigate) => {
   const homeDiv = document.createElement('div');
-  homeDiv.className = "container"
+  homeDiv.className = 'container';
 
-  const buttonDiv = document.createElement("div");
-  buttonDiv.className = "div-button"
+  const buttonDiv = document.createElement('div');
+  buttonDiv.className = 'div-button';
   homeDiv.appendChild(buttonDiv);
 
   const buttonRegister = document.createElement('button');

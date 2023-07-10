@@ -1,16 +1,16 @@
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "./firebase";
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth } from './firebase';
 
 export const createUser = (email, password) => {
-  return createUserWithEmailAndPassword(auth, email, password);
+return createUserWithEmailAndPassword(auth, email, password);
 }
 export const signInUser = (email, password) => {
-  return signInWithEmailAndPassword(auth, email, password);
+return signInWithEmailAndPassword(auth, email, password);
+
 }
-export const signInGoogle  = () => {
+export const signInGoogle = () => {
   return signInWithPopup(auth, provider); // retorna el resultado de la ejecución de una función
 }
-
 
 // getInfo
 // export const auth = getAuth();
@@ -27,13 +27,13 @@ export const signInGoogle  = () => {
 //   });
 
 
-  //signUp
+//signUp
 export const addUser = (email, password) => {
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user;
       console.log(userCredential)
-      // Aquí puedes realizar acciones adicionales después de que el usuario se haya registrado exitosamente
+// Aquí puedes realizar acciones adicionales después de que el usuario se haya registrado exitosamente
     })
     .catch((error) => {
       const errorCode = error.code;
