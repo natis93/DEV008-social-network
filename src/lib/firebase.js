@@ -25,5 +25,5 @@ export const db = getFirestore(app);
 
 
 export const savePost = (description) => {
-  console.log(descriptio
+  console.log(description);
 }
