@@ -1,9 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
-/* eslint-disable no-unused-vars */
-import { getAuth } from 'firebase/auth';
-/* eslint-enable no-unused-vars */
+import { getAuth, GoogleAuthProvider } from 'firebase/auth';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 // Your web app's Firebase configuration
@@ -19,7 +17,7 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-/* export const provider = new GoogleAuthProvider(); */
+export const provider = new GoogleAuthProvider(); 
 const app = initializeApp(firebaseConfig);
 // Initialize Firebase Authentication and get a reference to the service
 export const auth = getAuth(app);
