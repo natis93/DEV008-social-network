@@ -1,10 +1,59 @@
+import { createUser } from '../lib/auth.js';
+
 export const register = (onNavigate) => {
   const homeDiv = document.createElement('div');
   homeDiv.className = 'container';
 
+  // Splash screen
+  const splashScreenDiv = document.createElement('div');
+  splashScreenDiv.className = 'container__splash';
+  homeDiv.append(splashScreenDiv);
+
+  const planetDiv = document.createElement('div');
+  planetDiv.setAttribute('className', 'container__splash-img');
+  splashScreenDiv.append(planetDiv);
+
+  const planetImg = document.createElement('img');
+  planetImg.className = 'planet-img';
+  planetImg.src = '../Images/planet.png';
+  planetDiv.append(planetImg);
+
+  const brandDiv = document.createElement('div');
+  brandDiv.className = 'container__brand';
+  splashScreenDiv.append(brandDiv);
+
+  const brand = document.createElement('h3');
+  brand.className = 'brand';
+  brand.textContent = 'SPACE'
+  brandDiv.append(brand);
+
+  const sloganDiv = document.createElement('div');
+  sloganDiv.className = 'container__slogan';
+  splashScreenDiv.append(sloganDiv);
+
+  const slogan = document.createElement('p');
+  slogan.className = 'slogan';
+  slogan.textContent = 'Connecting the Universe, One Explorer at a Time'
+  sloganDiv.append(slogan);
+
+  const btnStartDiv = document.createElement('div');
+  btnStartDiv.className = 'container__btn-start';
+  splashScreenDiv.append(btnStartDiv);
+
+  const btnStart = document.createElement('p');
+  btnStart.className = 'btn-start';
+  btnStart.textContent = 'Start your adventure'
+  btnStartDiv.append(btnStart);
+
+// Form
+
+  const formDiv = document.createElement('div');
+  formDiv.className = 'container__form';
+  homeDiv.append(formDiv)
+
   const headerDiv = document.createElement('div');
   headerDiv.className = 'container__header';
-  homeDiv.appendChild(headerDiv);
+  formDiv.appendChild(headerDiv);
 
   const iconDiv = document.createElement('div');
   iconDiv.className = 'container__icon';
@@ -24,6 +73,7 @@ export const register = (onNavigate) => {
   buttonHome.className = 'button button-home';
   buttonHome.textContent = 'Home';
 
+  // Create form to register
   const form = document.createElement('form');
   form.className = 'form-register';
 
@@ -36,12 +86,14 @@ export const register = (onNavigate) => {
 
   // Email Input
   const inputEmail = document.createElement('input');
+  inputEmail.id = 'email';
   inputEmail.className = 'input input-email';
   inputEmail.placeholder = 'Email';
   form.appendChild(inputEmail);
 
   // Password Input
   const inputPassword = document.createElement('input');
+  inputPassword.id = 'password';
   inputPassword.className = 'input input-password';
   inputPassword.type = 'password';
   inputPassword.placeholder = 'Password';
@@ -52,7 +104,7 @@ export const register = (onNavigate) => {
   buttonDataRegister.type = 'submit';
   buttonDataRegister.value = 'Register';
   form.appendChild(buttonDataRegister);
-  homeDiv.appendChild(form);
+  formDiv.appendChild(form);
 
   // CODE TO SEE FAILURE TEXT:
   const failureText = document.createElement('p');
@@ -72,7 +124,8 @@ export const register = (onNavigate) => {
     failureText.classList.add('failure-text-hidden');
 
     const errorMessages = {
-      emailAndPasswordEmpty: 'Spaceship Error, we need your email and password!',
+      emailAndPasswordEmpty:
+        'Spaceship Error, we need your email and password!',
       passwordEmpty: 'Enter a cosmic password!',
       emailEmpty: 'Enter your email',
       invalidEmail: 'Wait! Invalid email!',
@@ -81,11 +134,11 @@ export const register = (onNavigate) => {
 
     const validationErrors = [];
 
-    if (email === ' && password === ') {
+    if (email === '' && password === '') {
       validationErrors.push('emailAndPasswordEmpty');
     } else if (password === '') {
       validationErrors.push('passwordEmpty');
-    } else if (email === '' && password === '') {
+    } else if (email === '') {
       validationErrors.push('emailEmpty');
     } else if (email.length === 0 || !email.includes('@') || !email.includes('.')) {
       validationErrors.push('invalidEmail');
@@ -98,9 +151,27 @@ export const register = (onNavigate) => {
       failureText.classList.remove('failure-text-hidden');
     } else {
       // If no errors proceed with register
-      createUser(registerEmail, registerPassword);
+      // {OH} Example of promises Firebase below:
+      // createUser(registerEmail, registerPassword)
+      // .then((response) => {console.log(response)}).catch((error) => {console.error(error)});
+      createUser(registerEmail, registerPassword)
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.error(error);
+          if (error.code === 'auth/email-already-in-use') {
+            failureText.textContent = 'Email already in use';
+          } else if (error.code === 'auth/invalid-email') {
+            failureText.textContent = 'Invalid email';
+          } else {
+            failureText.textContent = 'Email already in use';
+          }
+          failureText.classList.remove('failure-text-hidden');
+        });
     }
   });
+
   // End errors validation
 
   buttonHome.addEventListener('click', () => onNavigate('/'));
