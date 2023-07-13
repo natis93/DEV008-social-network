@@ -20,6 +20,14 @@ body {
   display: none;
 }
 
+.container__singin{
+  font-family: 'Poppins', sans-serif;
+  font-weight: normal;
+  font-size: 26px;
+  color: #C9C9C9;
+  margin-bottom: 45px;
+}
+
 .container__form {
   height: 100vh;
   display: flex;
@@ -47,6 +55,7 @@ body {
   font-weight: bold;
   font-size: 44px;
   line-height: 3rem;
+  
 }
 
 .container__icon {
@@ -63,24 +72,35 @@ body {
   gap: 0.8rem;
 }
 
+.form-login {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
 .container-input p {
   color: #757575;
   font-size: 14px;
 }
 
 .input {
+  font-family: 'Poppins', sans-serif;
+  font-weight: normal;
   font-size: 16px;
   width: 261px;
   height: 54px;
   border-radius: 7px;
-  border-color: #ffff;
+  border-color: #ffffff;
   background-color: transparent;
-  color: #ffff;
+  color: #C9C9C9;
   display: flex;
   margin: auto;
+  padding: 10px 18px;
 }
 
 .button {
+  font-family: 'Poppins', sans-serif;
+  font-weight: normal;
   font-size: 16px;
   width: 261px;
   color: #ffff;
@@ -93,6 +113,64 @@ body {
   margin: auto;
   padding: 7px 15px;
 }
+
+.container__optional{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+}
+
+.line{
+  height: 0px;
+  width: 112px;
+  border: 1.5px solid #ffff;
+}
+
+.or{
+  font-family: 'Poppins', sans-serif;
+  font-weight: normal;
+  font-size: 19px;
+  color: #ffff;
+}
+
+.button-google {
+  display: flex;
+  flex-direction: row-reverse;
+  width: 261px;
+  max-height: 37.33px;
+  color: #000000;
+  border-radius: 20px;
+  border: none;
+  background-color: #B8ACE3;
+  gap: 2rem;
+  align-items: center;
+  margin: auto;
+  padding: 7px 15px;
+}
+
+.container__text-google{
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: normal;
+  text-align: left;
+  color: #020202;
+  position: relative;
+  right: 33px;
+}
+
+.container__icon-google {
+  float: left;
+    margin-right: 12px;
+margin: 5px 12px 0px 0px;
+}
+
+.container__icon-google img {
+  filter: brightness(0) saturate(100%) invert(17%) sepia(0%) saturate(0%) hue-rotate(26deg) brightness(97%) contrast(83%);
+  width: 34px;
+
+}
+
 
 /*Estilos de la pantalla Home*/
 
@@ -109,13 +187,6 @@ body {
 /*Styles for failure text*/
 .input-container p {
   margin: 5px 0 0 5px;
-  color: #757575;
-  font-size: 14px;
-}
-
-.custom-failure-text {
-  text-align: center;
-  font-weight: normal;
   color: #757575;
   font-size: 14px;
 }
@@ -138,21 +209,24 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    
   }
 
   .container__splash-img {
     width: 100%;
+    
   }
 
   .planet-img {
     width: 100%;
   }
+  
 
   .brand {
     width: 100%;
     color: #ffff;
-    font-family: Dreams;
-    text-align: center;
+    /*font-family: Dreams;*/
+   
   }
 
   .slogan {
@@ -162,6 +236,14 @@ body {
   .btn-start {
     color: #ffff;
     display: none;
+  }
+
+  .container__singin{
+    font-family: 'Poppins', sans-serif;
+    font-weight: normal;
+    font-size: 26px;
+    color: #757575;
+    margin-bottom: 45px;
   }
 
   .container__form {
@@ -187,5 +269,18 @@ body {
     border: 1px solid #757575;
     color: #919191;
     background-color: transparent;
+  }
+
+  .line{
+    height: 0px;
+    width: 112px;
+    border: 0.5px solid #757575;
+  }
+  
+  .or{
+    font-family: 'Poppins', sans-serif;
+    font-weight: normal;
+    font-size: 19px;
+    color: #757575;
   }
 }
