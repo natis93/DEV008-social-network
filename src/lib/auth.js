@@ -1,7 +1,7 @@
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  signInWithPopup,
+  signInWithRedirect,
 } from 'firebase/auth';
 import { auth, provider } from './firebase';
 
@@ -14,7 +14,7 @@ export const signInUser = (email, password) =>
   signInWithEmailAndPassword(auth, email, password);
 
 export const signInGoogle = () => 
-  signInWithPopup(auth, provider); // Return the result of the function execution
+  signInWithRedirect(auth, provider); // Return the result of the function execution
 
 
 

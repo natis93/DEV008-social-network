@@ -22,9 +22,9 @@ export const register = (onNavigate) => {
   brandDiv.className = 'container__brand';
   splashScreenDiv.append(brandDiv);
 
-  const brand = document.createElement('h3');
+  const brand = document.createElement('img');
   brand.className = 'brand';
-  brand.textContent = 'SPACE'
+  brand.src = '../Images/space-white.png';
   brandDiv.append(brand);
 
   const sloganDiv = document.createElement('div');

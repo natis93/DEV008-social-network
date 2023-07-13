@@ -20,11 +20,11 @@ body {
   display: none;
 }
 
-.container__singin{
+.container__singin {
   font-family: 'Poppins', sans-serif;
   font-weight: normal;
   font-size: 26px;
-  color: #C9C9C9;
+  color: #c9c9c9;
   margin-bottom: 45px;
 }
 
@@ -55,7 +55,6 @@ body {
   font-weight: bold;
   font-size: 44px;
   line-height: 3rem;
-  
 }
 
 .container__icon {
@@ -92,7 +91,7 @@ body {
   border-radius: 7px;
   border-color: #ffffff;
   background-color: transparent;
-  color: #C9C9C9;
+  color: #c9c9c9;
   display: flex;
   margin: auto;
   padding: 10px 18px;
@@ -114,20 +113,19 @@ body {
   padding: 7px 15px;
 }
 
-.container__optional{
+.container__optional {
   display: flex;
   justify-content: space-around;
   align-items: center;
-
 }
 
-.line{
+.line {
   height: 0px;
   width: 112px;
   border: 1.5px solid #ffff;
 }
 
-.or{
+.or {
   font-family: 'Poppins', sans-serif;
   font-weight: normal;
   font-size: 19px;
@@ -142,14 +140,14 @@ body {
   color: #000000;
   border-radius: 20px;
   border: none;
-  background-color: #B8ACE3;
+  background-color: #b8ace3;
   gap: 2rem;
   align-items: center;
   margin: auto;
   padding: 7px 15px;
 }
 
-.container__text-google{
+.container__text-google {
   font-size: 16px;
   font-family: 'Poppins', sans-serif;
   font-weight: normal;
@@ -161,16 +159,15 @@ body {
 
 .container__icon-google {
   float: left;
-    margin-right: 12px;
-margin: 5px 12px 0px 0px;
+  margin-right: 12px;
+  margin: 5px 12px 0px 0px;
 }
 
 .container__icon-google img {
-  filter: brightness(0) saturate(100%) invert(17%) sepia(0%) saturate(0%) hue-rotate(26deg) brightness(97%) contrast(83%);
+  filter: brightness(0) saturate(100%) invert(17%) sepia(0%) saturate(0%)
+    hue-rotate(26deg) brightness(97%) contrast(83%);
   width: 34px;
-
 }
-
 
 /*Estilos de la pantalla Home*/
 
@@ -209,28 +206,29 @@ margin: 5px 12px 0px 0px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    
   }
 
   .container__splash-img {
     width: 100%;
-    
   }
 
   .planet-img {
     width: 100%;
   }
-  
+
+  .container__brand {
+    display: flex;
+    justify-content: center;
+  }
 
   .brand {
-    width: 100%;
-    color: #ffff;
-    /*font-family: Dreams;*/
-   
+    width: 40%;
   }
 
   .slogan {
     color: #ffff;
+    padding: 30px 10px;
+    font-size: 1rem;
   }
 
   .btn-start {
@@ -238,7 +236,7 @@ margin: 5px 12px 0px 0px;
     display: none;
   }
 
-  .container__singin{
+  .container__singin {
     font-family: 'Poppins', sans-serif;
     font-weight: normal;
     font-size: 26px;
@@ -271,13 +269,13 @@ margin: 5px 12px 0px 0px;
     background-color: transparent;
   }
 
-  .line{
+  .line {
     height: 0px;
     width: 112px;
     border: 0.5px solid #757575;
   }
-  
-  .or{
+
+  .or {
     font-family: 'Poppins', sans-serif;
     font-weight: normal;
     font-size: 19px;
