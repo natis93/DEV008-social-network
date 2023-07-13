@@ -99,6 +99,7 @@ export const register = (onNavigate) => {
   inputPassword.placeholder = 'Password';
   form.appendChild(inputPassword);
 
+  //Register button
   const buttonDataRegister = document.createElement('input');
   buttonDataRegister.className = 'button button-register';
   buttonDataRegister.type = 'submit';
@@ -109,7 +110,6 @@ export const register = (onNavigate) => {
   // CODE TO SEE FAILURE TEXT:
   const failureText = document.createElement('p');
   failureText.className = 'failure-text failure-text-hidden';
-  failureText.classList.add('custom-failure-text');
   form.appendChild(failureText);
 
   buttonDataRegister.addEventListener('click', (e) => {
@@ -140,7 +140,7 @@ export const register = (onNavigate) => {
       validationErrors.push('passwordEmpty');
     } else if (email === '') {
       validationErrors.push('emailEmpty');
-    } else if (email.length === 0 || !email.includes('@') || !email.includes('.')) {
+    } else if (!email.includes('@') || !email.includes('.')) {
       validationErrors.push('invalidEmail');
     } else if (password.length < 6) {
       validationErrors.push('shortPassword');
