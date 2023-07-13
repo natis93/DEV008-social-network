@@ -1,20 +1,15 @@
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signInWithPopup,
-} from 'firebase/auth';
-import { auth, provider } from './firebase';
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "./firebase";
 
-
-
-export const createUser = (email, password) => 
-  createUserWithEmailAndPassword(auth, email, password);
-
-export const signInUser = (email, password) => 
-  signInWithEmailAndPassword(auth, email, password);
-
-export const signInGoogle = () => 
-  signInWithPopup(auth, provider); // Return the result of the function execution
+export const createUser = (email, password) => {
+  return createUserWithEmailAndPassword(auth, email, password);
+}
+export const signInUser = (email, password) => {
+  return signInWithEmailAndPassword(auth, email, password);
+}
+export const signInGoogle  = () => {
+  return signInWithPopup(auth, provider); // retorna el resultado de la ejecución de una función
+}
 
 
 // getInfo

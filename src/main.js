@@ -20,7 +20,7 @@ const onNavigate = (pathname) => {
 
 const component = routes[window.location.pathname];
 window.onpopstate = () => {
-    rootDiv.appendChild(component(onNavigate));
+  rootDiv.appendChild(component(onNavigate));
 };
 
 rootDiv.appendChild(component(onNavigate));
