@@ -1,6 +1,6 @@
 import { signInUser, signInGoogle } from '../lib/auth.js';
 
-export const login = (onNavigate) => {
+export const login = (onNavigate) => { 
   const homeDiv = document.createElement('div');
   homeDiv.className = 'container';
 
@@ -33,7 +33,7 @@ export const login = (onNavigate) => {
 
   const slogan = document.createElement('p');
   slogan.className = 'slogan';
-  slogan.textContent = 'Connecting the Universe, One Explorer at a Time';
+  slogan.textContent = 'Connecting the Universe,\n  One Explorer at a Time'
   sloganDiv.append(slogan);
 
   const btnStartDiv = document.createElement('div');
@@ -129,7 +129,7 @@ export const login = (onNavigate) => {
 
   const textButtonGoogleDiv = document.createElement('div');
   textButtonGoogleDiv.className = 'container__text-google';
-  buttonGoogle.appendChild(textButtonGoogleDiv);
+  buttonGoogle.append(textButtonGoogleDiv);
 
   const textButtonGoogle = document.createElement('p');
   textButtonGoogle.className = 'text-google';
@@ -138,14 +138,33 @@ export const login = (onNavigate) => {
 
   const iconGoogleDiv = document.createElement('div');
   iconGoogleDiv.className = 'container__icon-google';
-  buttonGoogle.appendChild(iconGoogleDiv);
+  buttonGoogle.append(iconGoogleDiv);
 
   const iconGoogle = document.createElement('img');
   iconGoogle.className = 'icon-google';
   iconGoogle.src = '../Images/google.svg';
   iconGoogleDiv.appendChild(iconGoogle);
 
-  // CODE TO SEE FAILURE TEXT:
+  // Redirect to Register
+  const redirectSignUpDiv = document.createElement('div');
+  redirectSignUpDiv.className = 'container__redirect container__redirect-register';
+  form.appendChild(redirectSignUpDiv);
+
+  const descriptionTextRegisterDiv = document.createElement('div');
+  descriptionTextRegisterDiv.className = 'container__description container__description-register--inside';
+  redirectSignUpDiv.appendChild(descriptionTextRegisterDiv);
+
+  const descriptionTextRegister = document.createElement('p');
+  descriptionTextRegister.className = 'text-description text-description-register';
+  descriptionTextRegister.textContent = 'Don\'t have an account?';
+  descriptionTextRegisterDiv.append(descriptionTextRegister);
+
+  const redirectTextSignUp = document.createElement('span');
+  redirectTextSignUp.className = 'text-redirect text-redirect-register';
+  redirectTextSignUp.textContent = ' Create one here.';
+  redirectSignUpDiv.append(redirectTextSignUp);
+
+  // Code to see failure text
   const failureText = document.createElement('p');
   failureText.className = 'failure-text failure-text-hidden';
   form.appendChild(failureText);
@@ -181,6 +200,8 @@ export const login = (onNavigate) => {
         .then((response) => {
           const user = response.user;
           console.log(response);
+          // buttonDataLogin.addEventListener('click', () => onNavigate('/feed'));
+          onNavigate('/feed');
           // IdP data available using getAdditionalUserInfo(response)
           // ...
         })
@@ -191,8 +212,7 @@ export const login = (onNavigate) => {
             failureText.textContent = 'Invalid email';
           } else if (error.code === 'auth/wrong-password') {
             failureText.textContent = 'Incorrect password';
-          } else if (error.code === 'auth/user-not-found');
-          {
+          } else if (error.code === 'auth/user-not-found') {
             failureText.textContent = 'This user does not exist';
           }
           failureText.classList.remove('failure-text-hidden');
@@ -218,7 +238,7 @@ export const login = (onNavigate) => {
         // Handle Errors here.
       });
   });
-  buttonHome.addEventListener('click', () => onNavigate('/'));
-  form.appendChild(buttonHome);
+  redirectTextSignUp.addEventListener('click', () => onNavigate('/register'));
+
   return homeDiv;
 };

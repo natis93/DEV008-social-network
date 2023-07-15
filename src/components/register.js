@@ -33,7 +33,7 @@ export const register = (onNavigate) => {
 
   const slogan = document.createElement('p');
   slogan.className = 'slogan';
-  slogan.textContent = 'Connecting the Universe, One Explorer at a Time'
+  slogan.textContent = 'Connecting the Universe,\n  One Explorer at a Time'
   sloganDiv.append(slogan);
 
   const btnStartDiv = document.createElement('div');
@@ -45,7 +45,7 @@ export const register = (onNavigate) => {
   btnStart.textContent = 'Start your adventure'
   btnStartDiv.append(btnStart);
 
-// Form
+  // Form
 
   const formDiv = document.createElement('div');
   formDiv.className = 'container__form';
@@ -69,13 +69,11 @@ export const register = (onNavigate) => {
   titleDiv.className = 'container__title';
   headerDiv.appendChild(titleDiv);
 
-  const buttonHome = document.createElement('button');
-  buttonHome.className = 'button button-home';
-  buttonHome.textContent = 'Home';
 
   // Create form to register
   const form = document.createElement('form');
   form.className = 'form-register';
+  formDiv.appendChild(form);
 
   // Username Input
   const inputUser = document.createElement('input');
@@ -105,13 +103,34 @@ export const register = (onNavigate) => {
   buttonDataRegister.type = 'submit';
   buttonDataRegister.value = 'Register';
   form.appendChild(buttonDataRegister);
-  formDiv.appendChild(form);
 
-  // CODE TO SEE FAILURE TEXT:
+
+  // Redirect to Log In
+  const redirectSignInDiv = document.createElement('div');
+  redirectSignInDiv.className = 'container__redirect container__redirect-login';
+  form.appendChild(redirectSignInDiv);
+
+  const descriptionTextLoginDiv = document.createElement('div');
+  descriptionTextLoginDiv.className = 'container__description container__description-login--inside';
+  redirectSignInDiv.appendChild(descriptionTextLoginDiv);
+
+  const descriptionTextLogin = document.createElement('p');
+  descriptionTextLogin.className = 'text-description text-description-login';
+  descriptionTextLogin.textContent = 'Already have a Space account?';
+  descriptionTextLoginDiv.append(descriptionTextLogin);
+
+  const redirectTextSignIn = document.createElement('span');
+  redirectTextSignIn.className = 'text-redirect text-redirect-login';
+  redirectTextSignIn.textContent = 'Sign In';
+  redirectSignInDiv.append(redirectTextSignIn);
+
+  // Code to see failure text
   const failureText = document.createElement('p');
   failureText.className = 'failure-text failure-text-hidden';
   form.appendChild(failureText);
 
+
+  // Action of button
   buttonDataRegister.addEventListener('click', (e) => {
     e.preventDefault();
     const registerEmail = inputEmail.value;
@@ -157,6 +176,7 @@ export const register = (onNavigate) => {
       createUser(registerEmail, registerPassword)
         .then((response) => {
           console.log(response);
+          onNavigate('/feed');
         })
         .catch((error) => {
           console.error(error);
@@ -164,18 +184,16 @@ export const register = (onNavigate) => {
             failureText.textContent = 'Email already in use';
           } else if (error.code === 'auth/invalid-email') {
             failureText.textContent = 'Invalid email';
-          } else {
-            failureText.textContent = 'Email already in use';
           }
           failureText.classList.remove('failure-text-hidden');
         });
+      buttonDataRegister.disabled = true;
     }
   });
 
   // End errors validation
 
-  buttonHome.addEventListener('click', () => onNavigate('/'));
-  form.appendChild(buttonHome);
+  redirectTextSignIn.addEventListener('click', () => onNavigate('/login'));
 
   return homeDiv;
 };

@@ -97,6 +97,10 @@ body {
   padding: 10px 18px;
 }
 
+.input::placeholder {
+  color:#848484
+}
+
 .button {
   font-family: 'Poppins', sans-serif;
   font-weight: normal;
@@ -111,6 +115,12 @@ body {
   justify-content: center;
   margin: auto;
   padding: 7px 15px;
+  cursor: pointer;
+}
+
+.button:hover {
+  opacity: 0.8;
+  background-color: #7B23FE;
 }
 
 .container__optional {
@@ -147,6 +157,10 @@ body {
   padding: 7px 15px;
 }
 
+.button-google:hover {
+  color: aliceblue
+}
+
 .container__text-google {
   font-size: 16px;
   font-family: 'Poppins', sans-serif;
@@ -169,8 +183,31 @@ body {
   width: 34px;
 }
 
-/*Estilos de la pantalla Home*/
+.container__redirect {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;  
+}
 
+.container__description {
+  font-size: 14px;
+  margin-right: 7px;
+  color: #ffffff;
+}
+
+.text-redirect {
+  font-size: 14px;
+  font-weight: bold;
+  /* color: #513ba1; #472ea2 #4f33b2 */
+  color: #f8f0ff;
+  cursor: pointer;
+}
+
+.text-redirect:hover {
+  text-decoration: underline;
+}
+
+/*Estilos de la pantalla Home*/
 .div-button {
   display: grid;
   place-items: center;
@@ -193,7 +230,7 @@ body {
 /* @media (min-width: 481px) and (max-width: 768px) {
 } */
 
-@media (min-width: 769px) {
+@media (min-width: 769px) and (max-width: 1920px) {
   .container {
     display: flex;
     flex-direction: row;
@@ -226,9 +263,11 @@ body {
   }
 
   .slogan {
+    font-size: 17px;
     color: #ffff;
     padding: 30px 10px;
     font-size: 1rem;
+    white-space: pre-wrap;
   }
 
   .btn-start {
@@ -265,8 +304,12 @@ body {
 
   .input {
     border: 1px solid #757575;
-    color: #919191;
+    color: #19002A;
     background-color: transparent;
+  }
+
+  .input::placeholder {
+    color:#919191
   }
 
   .line {
@@ -280,5 +323,23 @@ body {
     font-weight: normal;
     font-size: 19px;
     color: #757575;
+  }
+
+  .container__description {
+    font-size: 14px;
+    margin-right: 7px;
+    color: #757575;
+  }
+
+  .text-redirect {
+    font-size: 14px;
+    font-weight: bold;
+    /* color: #513ba1; #472ea2 #4f33b2 */
+    color: #513ba1;
+    cursor: pointer;
+  }
+  
+  .text-redirect:hover {
+    text-decoration: underline;
   }
 }
