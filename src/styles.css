@@ -39,47 +39,6 @@ body{
     background-size: cover;
 }
 
-<<<<<<< HEAD
-.container__splash {
-  display: none;
-}
-
-.container__singin {
-  font-family: 'Poppins', sans-serif;
-  font-weight: normal;
-  font-size: 26px;
-  color: #c9c9c9;
-  margin-bottom: 45px;
-}
-
-.container__form {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-image: url(/Images/background.png);
-  background-size: cover;
-  padding: 20px;
-  box-sizing: border-box;
-}
-
-.container__header {
-  display: flex;
-  flex-direction: column;
-  /* align-items: center; */
-  width: 261px;
-}
-
-.container__title {
-  width: 100%;
-  padding-bottom: 15px;
-  text-align: left;
-  color: #ffff;
-  font-weight: bold;
-  font-size: 44px;
-  line-height: 3rem;
-=======
 .container__title{
     max-width: 62%;
     text-align: center;
@@ -87,7 +46,6 @@ body{
     font-family: Poppins-bold;
     font-size: 51px;
     line-height: 3.2rem;
->>>>>>> feature-natalia
 }
 
 .container__icon {
@@ -105,41 +63,6 @@ body{
 }
 
 .input {
-<<<<<<< HEAD
-  font-family: 'Poppins', sans-serif;
-  font-weight: normal;
-  font-size: 16px;
-  width: 261px;
-  height: 54px;
-  border-radius: 7px;
-  border-color: #ffffff;
-  background-color: transparent;
-  color: #c9c9c9;
-  display: flex;
-  margin: auto;
-  padding: 10px 18px;
-}
-
-.input::placeholder {
-  color:#848484
-}
-
-.button {
-  font-family: 'Poppins', sans-serif;
-  font-weight: normal;
-  font-size: 16px;
-  width: 261px;
-  color: #ffff;
-  border-radius: 20px;
-  border: none;
-  background-color: #513ba1;
-  gap: 2rem;
-  display: flex;
-  justify-content: center;
-  margin: auto;
-  padding: 7px 15px;
-  cursor: pointer;
-=======
     font-family: Poppins ;
     font-size: 16px;
     width: 261px;
@@ -166,7 +89,6 @@ body{
     justify-content: center;
     margin: auto;
     padding: 7px 15px;
->>>>>>> feature-natalia
 }
 
 .button:hover {
@@ -276,126 +198,6 @@ body{
   font-size: 14px;
 }
 
-<<<<<<< HEAD
-/*Responsive*/
-
-/* @media (min-width: 481px) and (max-width: 768px) {
-} */
-
-@media (min-width: 769px) and (max-width: 1920px) {
-  .container {
-    display: flex;
-    flex-direction: row;
-  }
-
-  .container__splash {
-    width: 55%;
-    background-image: url(./Images/background.png);
-    background-size: cover;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .container__splash-img {
-    width: 100%;
-  }
-
-  .planet-img {
-    width: 100%;
-  }
-
-  .container__brand {
-    display: flex;
-    justify-content: center;
-  }
-
-  .brand {
-    width: 40%;
-  }
-
-  .slogan {
-    font-size: 17px;
-    color: #ffff;
-    padding: 30px 10px;
-    font-size: 1rem;
-    white-space: pre-wrap;
-  }
-
-  .btn-start {
-    color: #ffff;
-    display: none;
-  }
-
-  .container__singin {
-    font-family: 'Poppins', sans-serif;
-    font-weight: normal;
-    font-size: 26px;
-    color: #757575;
-    margin-bottom: 45px;
-  }
-
-  .container__form {
-    width: 45%;
-    background-image: none;
-  }
-
-  .container__title {
-    width: 100%;
-    padding-bottom: 15px;
-    text-align: left;
-    color: #513ba1;
-    font-size: 44px;
-    line-height: 3rem;
-  }
-
-  .container__icon img {
-    filter: brightness(0) saturate(100%) invert(28%) sepia(21%) saturate(2877%)
-      hue-rotate(221deg) brightness(93%) contrast(101%);
-  }
-
-  .input {
-    border: 1px solid #757575;
-    color: #19002A;
-    background-color: transparent;
-  }
-
-  .input::placeholder {
-    color:#919191
-  }
-
-  .line {
-    height: 0px;
-    width: 112px;
-    border: 0.5px solid #757575;
-  }
-
-  .or {
-    font-family: 'Poppins', sans-serif;
-    font-weight: normal;
-    font-size: 19px;
-    color: #757575;
-  }
-
-  .container__description {
-    font-size: 14px;
-    margin-right: 7px;
-    color: #757575;
-  }
-
-  .text-redirect {
-    font-size: 14px;
-    font-weight: bold;
-    /* color: #513ba1; #472ea2 #4f33b2 */
-    color: #513ba1;
-    cursor: pointer;
-  }
-  
-  .text-redirect:hover {
-    text-decoration: underline;
-  }
-}
-=======
   .custom-failure-text {
     text-align: center;
     font-family: Poppins;
@@ -404,4 +206,3 @@ body{
     font-size: 14px;
   }
   
->>>>>>> feature-natalia

@@ -218,5 +218,7 @@ buttonDataLogin.addEventListener('click', (e) => {
    buttonHome.addEventListener('click', () => onNavigate('/'));
    form.appendChild(buttonHome);
   });
-    return homeDiv;
-  }
+  redirectTextSignUp.addEventListener('click', () => onNavigate('/register'));
+
+  return homeDiv; 
+};
