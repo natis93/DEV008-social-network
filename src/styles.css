@@ -6,16 +6,40 @@
   padding: 0;
 }
 
-body {
-  height: 100vh;
-  font-family: 'Poppins', sans-serif;
+@font-face {
+    font-family: Poppins;
+    font-style: normal ;
+    src: url(./fonts/Poppins-family/Poppins-Regular.ttf);
+}
+
+@font-face {
+    font-family: Poppins-Bold;
+    font-style: bold;
+    src: url(./fonts/Poppins-family/Poppins-Bold.ttf);
+}
+
+@font-face {
+    font-family: Poppins-Light;
+    font-style: light ;
+    src: url(./fonts/Poppins-family/Poppins-Light.ttf);
+}
+
+body{
+    font-family: Poppins, Arial, Helvetica, sans-serif;
+    height: 100vh;
 }
 
 /*Estilos de la pantalla Register*/
-.container {
-  height: 100vh;
+.container{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-image: url(./Images/background.png);
+    background-size: cover;
 }
 
+<<<<<<< HEAD
 .container__splash {
   display: none;
 }
@@ -55,6 +79,15 @@ body {
   font-weight: bold;
   font-size: 44px;
   line-height: 3rem;
+=======
+.container__title{
+    max-width: 62%;
+    text-align: center;
+    color: #ffff;
+    font-family: Poppins-bold;
+    font-size: 51px;
+    line-height: 3.2rem;
+>>>>>>> feature-natalia
 }
 
 .container__icon {
@@ -71,18 +104,8 @@ body {
   gap: 0.8rem;
 }
 
-.form-login {
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-}
-
-.container-input p {
-  color: #757575;
-  font-size: 14px;
-}
-
 .input {
+<<<<<<< HEAD
   font-family: 'Poppins', sans-serif;
   font-weight: normal;
   font-size: 16px;
@@ -116,6 +139,34 @@ body {
   margin: auto;
   padding: 7px 15px;
   cursor: pointer;
+=======
+    font-family: Poppins ;
+    font-size: 16px;
+    width: 261px;
+    height: 54px;
+    border-radius: 7px;
+    border-color: #ffff;
+    background-color: transparent;
+    color: #ffff;
+    padding: 10px 18px;
+    display: flex;
+    margin: auto;
+}
+
+.button{
+    font-family: Poppins ;
+    font-size: 16px;
+    width: 261px;
+    color: #ffff;
+    border-radius: 20px;
+    border: none;
+    background-color: #513BA1 ;
+    gap: 2rem;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    padding: 7px 15px;
+>>>>>>> feature-natalia
 }
 
 .button:hover {
@@ -225,6 +276,7 @@ body {
   font-size: 14px;
 }
 
+<<<<<<< HEAD
 /*Responsive*/
 
 /* @media (min-width: 481px) and (max-width: 768px) {
@@ -343,3 +395,13 @@ body {
     text-decoration: underline;
   }
 }
+=======
+  .custom-failure-text {
+    text-align: center;
+    font-family: Poppins;
+    font-weight: normal;
+    color: whitesmoke;
+    font-size: 14px;
+  }
+  
+>>>>>>> feature-natalia
