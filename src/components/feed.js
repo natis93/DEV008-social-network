@@ -51,7 +51,7 @@ export const feed = (onNavigate) => {
           <p class='description'></p>
         </div>
       </aside>
-      <main class='container container__feed'>
+      <main class='container container__main'>
         <article class='container__post container__create-post'>
           <div class='container__icon'>
             <img src='../Images/icon.png' alt='icono planeta' class='icon-planet'>
@@ -96,8 +96,8 @@ const createPostElement = (post) => {
   const postElement = document.createElement('div');
   postElement.className = 'post';
   postElement.innerHTML = `
-    <p class='post-content'>${post.data().text}</p>
     <p class='post-username'>Author: ${post.data().author}</p>
+    <p class='post-content'>${post.data().text}</p>
     <div class='post-icons'>
       <i class='fas fa-trash-alt delete-icon' data-post-id='${post.id}'></i>
       <i class='fas fa-edit edit-icon' data-post-id='${post.id}'></i>
