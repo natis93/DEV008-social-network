@@ -240,5 +240,5 @@ export const login = (onNavigate) => {
   });
   redirectTextSignUp.addEventListener('click', () => onNavigate('/feed'));
 
-  return homeDiv;
+  return homeDiv; 
 };

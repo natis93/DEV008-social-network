@@ -9,6 +9,7 @@ import {
   savePost,
 } from '../lib/firebase.js';
 
+//let showFeed = getElementById('root')
 export const feed = (onNavigate) => {
   const homeDiv = document.createElement('div');
   homeDiv.className = 'container__feed';
@@ -150,3 +151,4 @@ createPostForm.addEventListener('submit', (event) => {
 
   return homeDiv;
 };
+
