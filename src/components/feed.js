@@ -57,14 +57,15 @@ import {
               </div>
               <form class='container__create-new-post'>
                 <textarea id='textarea' placeholder='Lost in space? Send a sign...'></textarea>
-                <button class='button button-share' type='submit'>Submit</button>
+                <button class='button button-share' type='submit'>Share</button>
               </form>
             </article>
             <section class='container__post container__all-posts'></section>
           </main>
         </div>`;
     
-      homeDiv.innerHTML = showFeed;const containerProfile = homeDiv.querySelector('.container__profile');
+      homeDiv.innerHTML = showFeed;
+      const containerProfile = homeDiv.querySelector('.container__profile');
       const pictureProfile = containerProfile.querySelector('.icon-profile');
       const username = containerProfile.querySelector('.username');
       const createPostForm = homeDiv.querySelector('.container__create-new-post');
