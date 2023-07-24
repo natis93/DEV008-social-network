@@ -16,6 +16,22 @@ const firebaseConfig = {
   measurementId: 'G-K8PCLTY7B2',
 };
 
+import {
+  setDoc,
+  doc,
+  collection,
+  addDoc,
+  deleteDoc,
+  updateDoc,
+  query,
+  orderBy,
+  getDoc,
+  getDocs,
+  arrayUnion,
+  arrayRemove,
+  onSnapshot,
+} from 'firebase/firestore';
+
 // Initialize Firebase
 export const provider = new GoogleAuthProvider(); 
 const app = initializeApp(firebaseConfig);
@@ -23,6 +39,77 @@ export const auth = getAuth(app);
 // Initialize Cloud Firestore and get a reference to the service
 export const db = getFirestore(app);
 
-export const savePost = (description) => {
+/* export const savePost = (description) => {
   console.log(description);
+}; */
+
+
+// Method to delete a post
+export const deletePost = async (postId) => {
+  await deleteDoc(doc(db, 'post', postId));
 };
+
+// Method to update the likes of a post
+export const updateLikePost = async (postId) => {
+  const postRef = doc(db, 'post', postId);
+  const postSnapshot = await getDoc(postRef);
+  if (postSnapshot.exists()) {
+    const likes = postSnapshot.data().likes || 0;
+    await updateDoc(postRef, { likes: likes + 1 });
+  }
+};
+
+// Method to get the data of an author
+export const getDataAuthor = async (authorId) => {
+  const authorRef = doc(db, 'authors', authorId);
+  const authorSnapshot = await getDoc(authorRef);
+  if (authorSnapshot.exists()) {
+    return authorSnapshot.data();
+  }
+  return null;
+};
+
+/* // Method to get a user by their ID
+export const getUserByUserID = async (userId) => {
+  const userRef = doc(db, 'users', userId);
+  const userSnapshot = await getDoc(userRef);
+  if (userSnapshot.exists()) {
+    return userSnapshot.data();
+  }
+  return null;
+}; */
+
+// Method to listen to changes in the posts
+/* export const listenToPosts = (callback) => {
+  return onSnapshot(collection(db, 'posts'), (snapshot) => {
+    const posts = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+    callback(posts);
+  });
+}; */
+
+// Method to save a new post in Firebase
+export const savePost = async (text) => (
+  addDoc(collection(db, 'post'), {
+    text,
+    author: auth.currentUser.email,
+    timeline: Date.now(),
+    liked_by: [],
+  })
+);
+
+// Method to update a post in Firebase
+export const updatePost = async (postId, newContent) => {
+  const postRef = doc(db, 'post', postId);
+  await updateDoc(postRef, { text: newContent });
+};
+
+export const listenToPosts = (callback) => {
+  onSnapshot(collection(db,'post'), callback);
+};
+
+/* export function obtenerPost() {
+  return getDocs(collection(db,'post'))
+} */
+
+export const getUserByUserID = (userid) => getDoc(doc(db, 'users', userid))
+  .then((user) => user.data());

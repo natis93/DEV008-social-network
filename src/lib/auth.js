@@ -15,7 +15,7 @@ export const signInUser = (email, password) =>
   signInWithEmailAndPassword(auth, email, password);
 
 export const signInGoogle = () => 
-  signInWithRedirect(auth, provider); // Return the result of the function execution
+  signInWithRedirect(auth, provider); 
 
 export const stateChanged = () =>
   onAuthStateChanged(auth, (user) => {

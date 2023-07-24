@@ -219,11 +219,155 @@ body {
 }
 
 /*Styles for failure text*/
-.input-container p {
+.failure-text {
   margin: 5px 0 0 5px;
-  color: #757575;
   font-size: 14px;
+  text-align: center;
+  color: whitesmoke;
 }
+
+/*Styles Feed*/
+.container__feed{
+  width: 100%;
+}
+
+.homeDiv{
+  display: flex;
+  flex-direction: column;
+  background-color: #E6E6E5
+}
+
+.menu {
+  width: 100%;
+  height: 3.2em;
+  background-color: #f8f8f8;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.3);
+}
+
+.logo {
+  width: 30%;
+  padding: 1rem 0rem;
+  margin: 0px 0.8rem;
+}
+
+.logo img {
+  width: 100%;
+}
+
+.menu__burger {
+  display: flex;
+}
+
+.bars {
+  padding: .5rem 1.2rem 0rem 0rem;
+}
+
+.bars img {
+  width: 2rem;
+  filter: brightness(0) saturate(100%) invert(17%) sepia(30%) saturate(4217%) hue-rotate(227deg) brightness(89%) contrast(90%);
+}
+
+.menu__inside {
+
+}
+
+.menu__item {
+  display: none;
+  flex-direction: column;
+
+}
+
+.link {
+  text-decoration: none;
+  color: #513BA1;
+}
+
+.link--inside {
+  font-size: 18px;
+  padding: 8px 0;
+  line-height: 25px;
+}
+
+.container__profile {
+  width: 20em;
+  height: 12rem;
+  border-radius: 1.5rem;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #f8f8f8;
+  box-shadow: 5px 3px 15px rgba(0, 0, 0, 0.3);
+
+}
+
+/*Styles Feed create post*/
+.container__main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.container__create-post {
+  width: 20em;
+  height: 12rem;
+  border-radius: 1.5rem;
+  margin: 2rem auto;
+  padding: 1.3rem;
+  background-color: #f8f8f8;
+  box-shadow: 5px 3px 15px rgba(0, 0, 0, 0.3);
+}
+
+.post {
+  border-radius: 1.5rem;
+  margin: 2rem auto;
+  padding: 1.3rem;
+  background-color: #33337E;
+  box-shadow: 5px 3px 15px rgba(0, 0, 0, 0.3);
+}
+
+
+.container__allPost {
+  width: 20em;
+  height: 12rem;
+  border-radius: 1.5rem;
+  margin: 2rem auto;
+  padding: 1.3rem;
+  box-shadow: 5px 3px 15px rgba(0, 0, 0, 0.3);
+}
+
+.icon-planet {
+  width: 2rem;
+  height: 2rem;
+  filter: brightness(0) saturate(100%) invert(28%) sepia(21%) saturate(2877%)
+  hue-rotate(221deg) brightness(93%) contrast(101%);
+}
+
+.container__icon {
+  padding: .7rem .5rem;
+}
+
+#textarea {
+  width: 17rem;
+  height: 2.5rem;
+  border-radius: 1.2rem;
+  padding: .2rem;
+}
+
+#textarea::placeholder {
+  text-align: left;
+  font-family: 'Poppins', sans-serif;
+  font-size: .8rem;
+}
+
+.button-share {
+  width: 5rem;
+  height: 1.6rem;
+  line-height: .4rem;
+}
+
+
 
 /*Responsive*/
 

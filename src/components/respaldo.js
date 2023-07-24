@@ -9,7 +9,6 @@ import {
   savePost,
 } from '../lib/firebase.js';
 
-//let showFeed = getElementById('root')
 export const feed = (onNavigate) => {
   const homeDiv = document.createElement('div');
   homeDiv.className = 'container__feed';
@@ -52,7 +51,7 @@ export const feed = (onNavigate) => {
           <p class='description'></p>
         </div>
       </aside>
-      <main class='container container__main'>
+      <main class='container container__feed'>
         <article class='container__post container__create-post'>
           <div class='container__icon'>
             <img src='../Images/icon.png' alt='icono planeta' class='icon-planet'>
@@ -97,8 +96,8 @@ const createPostElement = (post) => {
   const postElement = document.createElement('div');
   postElement.className = 'post';
   postElement.innerHTML = `
-    <p class='post-username'>Author: ${post.data().author}</p>
     <p class='post-content'>${post.data().text}</p>
+    <p class='post-username'>Author: ${post.data().author}</p>
     <div class='post-icons'>
       <i class='fas fa-trash-alt delete-icon' data-post-id='${post.id}'></i>
       <i class='fas fa-edit edit-icon' data-post-id='${post.id}'></i>
@@ -151,4 +150,3 @@ createPostForm.addEventListener('submit', (event) => {
 
   return homeDiv;
 };
-
