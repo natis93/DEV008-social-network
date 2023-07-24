@@ -4,9 +4,10 @@ import {
   updateLikePost,
   getUserByUserID,
   listenToPosts,
+  savePost,
+  obtenerPost,
   updatePost,
   db,
-  savePost,
 } from '../lib/firebase.js';
 
 export const feed = (onNavigate) => {
@@ -57,8 +58,8 @@ export const feed = (onNavigate) => {
             <img src='../Images/icon.png' alt='icono planeta' class='icon-planet'>
           </div>
           <form class='container__create-new-post'>
-            <textarea id='textarea' placeholder='¿Lost in space? Send a sign...'></textarea>
-            <button class='button button-share' type='submit'>Share</button>
+            <textarea id='textarea' placeholder='¿Perdido en el espacio? Envía una señal...'></textarea>
+            <button class='button button-share' type='submit'>Enviar</button>
           </form>
         </article>
         <section class='container__post container__all-posts'></section>
@@ -73,80 +74,51 @@ export const feed = (onNavigate) => {
   const createPostForm = homeDiv.querySelector('.container__create-new-post');
   const allPostsContainer = homeDiv.querySelector('.container__all-posts');
 
-  
-  // Función para crear un nuevo post en firebase
-  const createPostAndShow = (text, username) => {
-    savePost(text) // Usamos la función savePost en lugar de addDoc
+  // Función para crear un nuevo post y mostrarlo en la pantalla
+  const createPostAndShow = (text, authorEmail, username) => {
+    db.collection('post')
+      .add({
+        text: text,
+        authorUsername: username, // Guarda el nombre de usuario en el post
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      })
       .then(() => {
         // El post se ha guardado exitosamente
-        console.log('Post saved');
-        // Luego, mostramos el post en la pantalla (puedes modificar la lógica según tus necesidades)
+        console.log('¡Post guardado exitosamente!');
+
+        // Aquí puedes realizar cualquier otra acción después de guardar el post si es necesario
+
+        // Luego, muestra el post en la pantalla (puedes modificar la lógica según tus necesidades)
         const postElement = createPostElement({ text, authorUsername: username });
         allPostsContainer.appendChild(postElement);
       })
       .catch((error) => {
         // Ocurrió un error al guardar el post
-        console.error('Error saving the post:', error);
+        console.error('Error al guardar el post:', error);
+        throw new Error('Error al guardar el post');
       });
   };
 
-// Función para crear el elemento HTML que representa un post
-const createPostElement = (post) => {
-  console.log(post.id);
-  const postElement = document.createElement('div');
-  postElement.className = 'post';
-  postElement.innerHTML = `
-    <p class='post-content'>${post.data().text}</p>
-    <p class='post-username'>Author: ${post.data().author}</p>
-    <div class='post-icons'>
-      <i class='fas fa-trash-alt delete-icon' data-post-id='${post.id}'></i>
-      <i class='fas fa-edit edit-icon' data-post-id='${post.id}'></i>
-      <i class='fas fa-thumbs-up like-icon' data-post-id='${post.id}'></i>
-    </div>
-  `;
-  return postElement;
-};
-
-// Función para mostrar los posts en la pantalla
-//Esta función recibe una lista de posts y se encarga de recorrer cada uno de ellos.
-const showPosts = (posts) => {
-  console.log(posts);
-  allPostsContainer.innerHTML = '';
-
-  posts.forEach((post) => {
-    console.log(post.text);
-    const postElement = createPostElement(post);
-    allPostsContainer.appendChild(postElement);
-  });
-};
-
-// Mostrar los posts en la pantalla cuando la página se carga inicialmente
-listenToPosts((posts) => {
-  showPosts(posts);
-});
-
-// Evento 'submit' del formulario para crear un nuevo post
-createPostForm.addEventListener('submit', (event) => {
-  event.preventDefault();
-
-  // Obtén el texto del post del textarea
-  const textarea = createPostForm.querySelector('#textarea');
-  const text = textarea.value;
-
-  // Crea el post en Firebase y muéstralo en la pantalla
- 
-  savePost(text) // Usamos la función savePost en lugar de addDoc
-  .then(() => {
-    console.log('Post saved');
-  })
-  .catch((error) => {
-    // Ocurrió un error al guardar el post
-    console.error('Error saving the post:', error);
+  // Mostrar los posts en la pantalla cuando la página se carga inicialmente
+  listenToPosts((posts) => {
+    showPosts(posts);
   });
 
-  // Limpia el contenido del textarea después de crear el post
-  textarea.value = '';
-});
+  // Evento 'submit' del formulario para crear un nuevo post
+  createPostForm.addEventListener('submit', (event) => {
+    event.preventDefault();
 
-  return homeDiv;
+    // Obtén el texto del post del textarea
+    const textarea = createPostForm.querySelector('#textarea');
+    const postText = textarea.value;
+
+    // Obtén el correo electrónico del autor actualmente autenticado (puedes obtenerlo de tu sistema de autenticación)
+    const authorEmail = 'example@example.com'; // Reemplaza con el correo electrónico del usuario autenticado
+
+    // Crea el post en Firebase y muéstralo en la pantalla
+    createPostAndShow(postText, authorEmail, username);
+
+    // Limpia el contenido del textarea después de crear el post
+    textarea.value = '';
+  });
 };
