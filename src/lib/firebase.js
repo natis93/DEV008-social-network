@@ -69,24 +69,6 @@ export const getDataAuthor = async (authorId) => {
   return null;
 };
 
-/* // Method to get a user by their ID
-export const getUserByUserID = async (userId) => {
-  const userRef = doc(db, 'users', userId);
-  const userSnapshot = await getDoc(userRef);
-  if (userSnapshot.exists()) {
-    return userSnapshot.data();
-  }
-  return null;
-}; */
-
-// Method to listen to changes in the posts
-/* export const listenToPosts = (callback) => {
-  return onSnapshot(collection(db, 'posts'), (snapshot) => {
-    const posts = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-    callback(posts);
-  });
-}; */
-
 // Method to save a new post in Firebase
 export const savePost = async (text) => (
   addDoc(collection(db, 'post'), {
@@ -106,10 +88,6 @@ export const updatePost = async (postId, newContent) => {
 export const listenToPosts = (callback) => {
   onSnapshot(collection(db,'post'), callback);
 };
-
-/* export function obtenerPost() {
-  return getDocs(collection(db,'post'))
-} */
 
 export const getUserByUserID = (userid) => getDoc(doc(db, 'users', userid))
   .then((user) => user.data());

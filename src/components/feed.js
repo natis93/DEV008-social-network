@@ -6,8 +6,10 @@ import {
   listenToPosts,
   updatePost,
   db,
+  auth,
   savePost,
 } from '../lib/firebase.js';
+
 
 export const feed = (onNavigate) => {
   const homeDiv = document.createElement('div');
@@ -104,6 +106,22 @@ const createPostElement = (post) => {
       <i class='fas fa-thumbs-up like-icon' data-post-id='${post.id}'></i>
     </div>
   `;
+// ---------Para borrar post---------------
+const deleteIcon = postElement.querySelector('.delete-icon');
+const currentUserEmail = auth.currentUser.email;
+
+//Para verificar si el autor coincide con el usuario de la red social
+if (post.data().author === currentUserEmail) {
+  deleteIcon.style.display = 'inline-block';
+//evento para borrar post
+deleteIcon.addEventListener('click', () => {
+  const postId = deleteIcon.getAttribute('data-post-id');
+  deletePost(postId);
+});
+} else {
+  deleteIcon.style.display = 'none';
+}
+
   return postElement;
 };
 
@@ -150,3 +168,4 @@ createPostForm.addEventListener('submit', (event) => {
 
   return homeDiv;
 };
+

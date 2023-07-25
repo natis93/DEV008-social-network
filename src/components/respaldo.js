@@ -6,8 +6,10 @@ import {
   listenToPosts,
   updatePost,
   db,
+  auth,
   savePost,
 } from '../lib/firebase.js';
+
 
 export const feed = (onNavigate) => {
   const homeDiv = document.createElement('div');
@@ -51,7 +53,7 @@ export const feed = (onNavigate) => {
           <p class='description'></p>
         </div>
       </aside>
-      <main class='container container__feed'>
+      <main class='container container__main'>
         <article class='container__post container__create-post'>
           <div class='container__icon'>
             <img src='../Images/icon.png' alt='icono planeta' class='icon-planet'>
@@ -96,14 +98,30 @@ const createPostElement = (post) => {
   const postElement = document.createElement('div');
   postElement.className = 'post';
   postElement.innerHTML = `
-    <p class='post-content'>${post.data().text}</p>
     <p class='post-username'>Author: ${post.data().author}</p>
+    <p class='post-content'>${post.data().text}</p>
     <div class='post-icons'>
       <i class='fas fa-trash-alt delete-icon' data-post-id='${post.id}'></i>
       <i class='fas fa-edit edit-icon' data-post-id='${post.id}'></i>
       <i class='fas fa-thumbs-up like-icon' data-post-id='${post.id}'></i>
     </div>
   `;
+// ---------Para borrar post---------------
+const deleteIcon = postElement.querySelector('.delete-icon');
+const currentUserEmail = auth.currentUser.email;
+
+//Para verificar si el autor coincide con el usuario de la red social
+if (post.data().author === currentUserEmail) {
+  deleteIcon.style.display = 'inline-block';
+//evento para borrar post
+deleteIcon.addEventListener('click', () => {
+  const postId = deleteIcon.getAttribute('data-post-id');
+  deletePost(postId);
+});
+} else {
+  deleteIcon.style.display = 'none';
+}
+
   return postElement;
 };
 
