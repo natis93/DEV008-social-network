@@ -76,6 +76,7 @@ export const savePost = async (text) => (
     author: auth.currentUser.email,
     timeline: Date.now(),
     liked_by: [],
+    likes: [],
   })
 );
 
@@ -85,9 +86,17 @@ export const updatePost = async (postId, newContent) => {
   await updateDoc(postRef, { text: newContent });
 };
 
+// Method to update likes
+export const updatePostlikes = async (postId, newContent) => {
+  const postRef = doc(db, 'post', postId);
+  await updateDoc(postRef, { likes: newContent });
+};
+
 export const listenToPosts = (callback) => {
   onSnapshot(collection(db,'post'), callback);
 };
 
 export const getUserByUserID = (userid) => getDoc(doc(db, 'users', userid))
   .then((user) => user.data());
+
+export const getCurrentUser = ()=>auth.currentUser.email;
