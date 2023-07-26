@@ -138,6 +138,36 @@ const handleLike = async (event) => {
 }
 };
 
+//--------------Función para editar--------------
+const handleEditPost = (postId, currentText) => {
+  const editForm = document.createElement('form');
+  editForm.innerHTML = `
+    <textarea id='edit-textarea'>${currentText}</textarea>
+    <button type='submit'>Save</button>
+  `;
+
+  // Mostrar el formulario de edición en el lugar del post original
+  const postElement = allPostsContainer.querySelector(`[data-post-id='${postId}']`);
+  postElement.replaceWith(editForm);
+
+  // Agregamos evento submit al formulario de edición
+  editForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const editTextarea = editForm.querySelector('#edit-textarea');
+    const updatedText = editTextarea.value;
+
+    // Actualizamos post en Firebase usando el método updatePost
+    updatePost(postId, updatedText)
+      .then(() => {
+        console.log('Post updated');
+      })
+      .catch((error) => {
+        console.error('Error updating the post:', error);
+      });
+  });
+};
+
+
 
 // Función para crear el elemento HTML que representa un post
 const createPostElement = (post) => {
@@ -154,7 +184,7 @@ const createPostElement = (post) => {
       <span class='like-count' data-post-id='${post.id}'>${post.data().likes.length}</span>
     </div>
   `;
-// ---------Para borrar post---------------
+// -------------Para borrar post---------------
 const deleteIcon = postElement.querySelector('.delete-icon');
 const currentUserEmail = auth.currentUser.email;
 
@@ -170,7 +200,14 @@ deleteIcon.addEventListener('click', () => {
   deleteIcon.style.display = 'none';
 }
 
-//---Para ícono de Like-------
+//--------------Evento editar post---------
+
+const editIcon = postElement.querySelector('.edit-icon');
+editIcon.addEventListener('click', () => {
+  handleEditPost(post.id, post.data().text);
+});
+
+//---------------Para ícono de Like-------
 const likeButton = postElement.querySelector('.like-icon');
 likeButton.setAttribute('data-author-id', post.data().authorId); // Agregar el ID del autor como atributo
 likeButton.addEventListener('click',() => {
@@ -236,4 +273,3 @@ createPostForm.addEventListener('submit', (event) => {
 
   return homeDiv;
 };
-
