@@ -327,6 +327,17 @@ body {
   box-shadow: 5px 3px 15px rgba(0, 0, 0, 0.3);
 }
 
+.delete-icon,
+.edit-icon,
+.like-icon {
+  color: #513ba1; 
+}
+
+.post-username {
+  color: #513ba1; 
+  font-weight: bold;
+}
+
 
 .container__allPost {
   width: 20em;

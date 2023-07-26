@@ -1,8 +1,6 @@
 import {
   deletePost,
-  getDataAuthor,
   updateLikePost,
-  getUserByUserID,
   listenToPosts,
   updatePost,
   db,

@@ -96,7 +96,4 @@ export const listenToPosts = (callback) => {
   onSnapshot(collection(db,'post'), callback);
 };
 
-export const getUserByUserID = (userid) => getDoc(doc(db, 'users', userid))
-  .then((user) => user.data());
-
 export const getCurrentUser = ()=>auth.currentUser.email;
