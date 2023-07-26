@@ -301,6 +301,23 @@ body {
 
 }
 
+.container__explorer {
+  display: flex;
+  align-items: center; 
+}
+
+.icon-profile {
+  color: #513ba1;
+  font-size: 3.2em;
+}
+
+.explorer {
+  margin-left: .2rem;
+  display: inline; 
+  font-size: 1.5rem;
+  color: #7261B2;
+}
+
 /*Styles Feed create post*/
 .container__main {
   width: 100%;
@@ -321,10 +338,21 @@ body {
 
 .post {
   border-radius: 1.5rem;
-  margin: 2rem auto;
+  margin: .5rem auto;
   padding: 1.3rem;
-  background-color: #33337E;
+  background-color: #f8f8f8;
   box-shadow: 5px 3px 15px rgba(0, 0, 0, 0.3);
+}
+
+.delete-icon,
+.edit-icon,
+.like-icon {
+  color: #513ba1; 
+}
+
+.post-username {
+  color: #513ba1; 
+  font-weight: bold;
 }
 
 
@@ -367,7 +395,12 @@ body {
   line-height: .4rem;
 }
 
-
+/*-----------------Responsive del feed----------*/
+/* @media (min-width: 769px) and (max-width: 1920px) {
+  .container {
+    display: flex;
+    flex-direction: row;
+  } */
 
 /*Responsive*/
 
