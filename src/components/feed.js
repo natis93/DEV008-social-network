@@ -28,23 +28,23 @@ export const feed = (onNavigate) => {
           </div>
           <ul class='menu__inside'>
             <li class='menu__item'>
-              <a href='#' class='link link--inside'>Perfil</a>
+              <a href='#' class='link link--inside'>Profile</a>
             </li>
             <li class='menu__item'>
-              <a href='#' class='link link--inside'>Notificaciones</a>
+              <a href='#' class='link link--inside'>Notifications</a>
             </li>
             <li class='menu__item'>
-              <a href='#' class='link link--inside'>Cerrar sesión</a>
+              <a href='#' class='link link--inside'>Log Out</a>
             </li>
           </ul>
         </div>
       </header>
       <aside class='container container__profile'>
         <div class='container__picture-profile'>
-          <img src='' alt='foto de perfil' class='icon-profile'>
+          <i class="fas fa-user-circle icon-profile"></i>
         </div>
         <div class='container__explorer'>
-          <h5 class='explorer'>Explorador</h5>
+          <h5 class='explorer'>Explorer</h5>
         </div>
         <div class='container__username'>
           <h6 class='username'></h6>

@@ -301,6 +301,23 @@ body {
 
 }
 
+.container__explorer {
+  display: flex;
+  align-items: center; 
+}
+
+.icon-profile {
+  color: #513ba1;
+  font-size: 3.2em;
+}
+
+.explorer {
+  margin-left: .2rem;
+  display: inline; 
+  font-size: 1.5rem;
+  color: #7261B2;
+}
+
 /*Styles Feed create post*/
 .container__main {
   width: 100%;
@@ -378,7 +395,12 @@ body {
   line-height: .4rem;
 }
 
-
+/*-----------------Responsive del feed----------*/
+/* @media (min-width: 769px) and (max-width: 1920px) {
+  .container {
+    display: flex;
+    flex-direction: row;
+  } */
 
 /*Responsive*/
 
