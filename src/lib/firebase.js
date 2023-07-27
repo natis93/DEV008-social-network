@@ -46,12 +46,12 @@ export const db = getFirestore(app);
 
 // Method to delete a post
 export const deletePost = async (postId) => {
-  await deleteDoc(doc(db, 'posts', postId));
+  await deleteDoc(doc(db, 'post', postId));
 };
 
 // Method to update the likes of a post
 export const updateLikePost = async (postId) => {
-  const postRef = doc(db, 'posts', postId);
+  const postRef = doc(db, 'post', postId);
   const postSnapshot = await getDoc(postRef);
   if (postSnapshot.exists()) {
     const likes = postSnapshot.data().likes || 0;
@@ -91,9 +91,10 @@ export const getUserByUserID = async (userId) => {
 export const savePost = async (text) => (
   addDoc(collection(db, 'post'), {
     text,
-    author: doc(db, '/users', auth.currentUser.uid),
+    author: auth.currentUser.email,
     timeline: Date.now(),
     liked_by: [],
+    likes: [],
   })
 );
 
@@ -102,31 +103,28 @@ export const updatePost = async (postId, newContent) => {
   const postRef = doc(db, 'post', postId);
   await updateDoc(postRef, { text: newContent });
 };
-
-export const listenToPosts = (callback) => {
-  onSnapshot(showPosts, callback);
+// Method to update a post in Firebase
+export const updatePostlikes = async (postId, newContent) => {
+  const postRef = doc(db, 'post', postId);
+  await updateDoc(postRef, { likes: newContent });
 };
 
-export function obtenerPost() {
+export const listenToPosts = (callback) => {
+  onSnapshot(collection(db,'post'), callback);
+};
+
+/* export function obtenerPost() {
   return getDocs(collection(db,'post'))
-}
+} */
 
 export const getUserByUserID = (userid) => getDoc(doc(db, 'users', userid))
   .then((user) => user.data());
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ 
+  export const showPosts = (posts) => {
+    // Tu implementación de mostrar los posts
+    // Por ejemplo, puedes iterar a través de los posts y mostrarlos en la consola
+    posts.forEach((post) => {
+      console.log(post);
+    });
+  };
+  export const getCurrentUser = ()=>auth.currentUser.email;

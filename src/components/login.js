@@ -238,7 +238,7 @@ export const login = (onNavigate) => {
         // Handle Errors here.
       });
   });
-  redirectTextSignUp.addEventListener('click', () => onNavigate('/register'));
+  redirectTextSignUp.addEventListener('click', () => onNavigate('/feed'));
 
   return homeDiv; 
 };

@@ -133,9 +133,8 @@ export const register = (onNavigate) => {
   // Action of button
   buttonDataRegister.addEventListener('click', (e) => {
     e.preventDefault();
-    const registerEmail = inputEmail.value;
-    const registerPassword = inputPassword.value;
-
+  // Obtiene el valor del campo de entrada de texto del nombre de usuario
+    const username = inputUser.value;
     const email = inputEmail.value;
     const password = inputPassword.value;
 
@@ -169,15 +168,11 @@ export const register = (onNavigate) => {
       failureText.textContent = errorMessages[validationErrors[0]];
       failureText.classList.remove('failure-text-hidden');
     } else {
-      // If no errors proceed with register
-      // {OH} Example of promises Firebase below:
-      // createUser(registerEmail, registerPassword)
-      // .then((response) => {console.log(response)}).catch((error) => {console.error(error)});
-      createUser(registerEmail, registerPassword)
-        .then((response) => {
-          console.log(response);
-          onNavigate('/feed');
-        })
+      createUser(email, password, username)
+        .then(() => {
+        console.log('User registered successfully');
+        onNavigate('/feed');
+      })
         .catch((error) => {
           console.error(error);
           if (error.code === 'auth/email-already-in-use') {

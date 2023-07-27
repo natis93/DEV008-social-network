@@ -1,5 +1,3 @@
-import { async } from 'regenerator-runtime';
-import { doc,getDoc,getDocs,collection, } from 'firebase/firestore';
 import {
   deletePost,
   getDataAuthor,
@@ -9,11 +7,8 @@ import {
   updatePost,
   db,
   savePost,
-  getCurrentUser,
-  updatePostlikes
 } from '../lib/firebase.js';
 
-//let showFeed = getElementById('root')
 export const feed = (onNavigate) => {
   const homeDiv = document.createElement('div');
   homeDiv.className = 'container__feed';
@@ -56,7 +51,7 @@ export const feed = (onNavigate) => {
           <p class='description'></p>
         </div>
       </aside>
-      <main class='container container__main'>
+      <main class='container container__feed'>
         <article class='container__post container__create-post'>
           <div class='container__icon'>
             <img src='../Images/icon.png' alt='icono planeta' class='icon-planet'>
@@ -78,51 +73,22 @@ export const feed = (onNavigate) => {
   const createPostForm = homeDiv.querySelector('.container__create-new-post');
   const allPostsContainer = homeDiv.querySelector('.container__all-posts');
 
- 
   
-  // Variable para llevar registro de los posts que ha dado "like" el usuario actual
-  const likedPostsByAuthor = {};
-// Agregar el campo "likes" con valor 0 a los documentos existentes en la colección "post"
-const addLikesFieldToExistingPosts = async () => {
-  const postsRef = collection(db, 'post');
-  const postsSnapshot = await getDocs(postsRef);
-  postsSnapshot.forEach(async (postDoc) => {
-    // Verificar si el campo "likes" ya existe en el documento
-    if (!postDoc.data().hasOwnProperty('likes')) {
-      // Si el campo "likes" no existe, actualizar el documento para agregar el campo con valor 0
-      await updateDoc(doc(db, 'post', postDoc.id), { likes: 0 });
-    }
-  });
-};
-
-// Llamar a la función para agregar el campo "likes" a los documentos existentes
-addLikesFieldToExistingPosts();
-const handleLike = async (event) => {
-  const postId = event.target.getAttribute('data-post-id');
-  const authorId = event.target.getAttribute('data-author-id');
- 
-  // Verificar si el autor ya ha dado "like" a este post
-  if (likedPostsByAuthor[authorId] && likedPostsByAuthor[authorId][postId]) {
-  // Si ya ha dado like, restar el like en la base de datos y eliminarlo del registro local
-  await updateLikePost(postId, -1);
-  delete likedPostsByAuthor[authorId][postId];
-  event.target.classList.remove('liked');
-  // Restar un like en el contador de likes en la pantalla
-  const likeCountElement = document.querySelector(`[data-post-id='${postId}'] .like-count`);
-  likeCountElement.textContent = parseInt(likeCountElement.textContent) - 1;
-} else {
-  // Si no ha dado like, sumar el like en la base de datos y agregarlo al registro local
-  await updateLikePost(postId, 1);
-  likedPostsByAuthor[authorId] = likedPostsByAuthor[authorId] || {};
-  likedPostsByAuthor[authorId][postId] = true;
-  event.target.classList.add('liked');
-  // Sumar un like en el contador de likes en la pantalla
-  const likeCountElement = document.querySelector(`[data-post-id='${postId}'] .like-count`);
-  if (likeCountElement) {
-  likeCountElement.textContent = parseInt(likeCountElement.textContent) + 1;
-}
-}
-};
+  // Función para crear un nuevo post en firebase
+  const createPostAndShow = (text, username) => {
+    savePost(text) // Usamos la función savePost en lugar de addDoc
+      .then(() => {
+        // El post se ha guardado exitosamente
+        console.log('Post saved');
+        // Luego, mostramos el post en la pantalla (puedes modificar la lógica según tus necesidades)
+        const postElement = createPostElement({ text, authorUsername: username });
+        allPostsContainer.appendChild(postElement);
+      })
+      .catch((error) => {
+        // Ocurrió un error al guardar el post
+        console.error('Error saving the post:', error);
+      });
+  };
 
 // Función para crear el elemento HTML que representa un post
 const createPostElement = (post) => {
@@ -130,54 +96,30 @@ const createPostElement = (post) => {
   const postElement = document.createElement('div');
   postElement.className = 'post';
   postElement.innerHTML = `
-    <p class='post-username'>Author: ${post.data().author}</p>
     <p class='post-content'>${post.data().text}</p>
+    <p class='post-username'>Author: ${post.data().author}</p>
     <div class='post-icons'>
       <i class='fas fa-trash-alt delete-icon' data-post-id='${post.id}'></i>
       <i class='fas fa-edit edit-icon' data-post-id='${post.id}'></i>
       <i class='fas fa-thumbs-up like-icon' data-post-id='${post.id}'></i>
-      <span class='like-count' data-post-id='${post.id}'>${post.data().likes.length}</span>
     </div>
   `;
+  return postElement;
+};
 
-const likeButton = postElement.querySelector('.like-icon');
-likeButton.setAttribute('data-author-id', post.data().authorId); // Agregar el ID del autor como atributo
-likeButton.addEventListener('click',() => {
-const currentUser = getCurrentUser()
-const likedBy =post.data().likes
-console.log(currentUser)
-console.log(post.data().likes)
-if (post.data().likes.includes(currentUser)){
-  console.log('restar')
-const indice = likedBy.indexOf(currentUser); // obtenemos el indice
-likedBy.splice(indice, 1); // 1 es la cantidad de elemento a eliminar
-updatePostlikes(post.id,likedBy)
-}else{
-  console.log('sumar')
-  likedBy.push(currentUser)
-  updatePostlikes(post.id,likedBy)
-}
-})
-
- return postElement;
-}; 
 // Función para mostrar los posts en la pantalla
 //Esta función recibe una lista de posts y se encarga de recorrer cada uno de ellos.
 const showPosts = (posts) => {
   console.log(posts);
   allPostsContainer.innerHTML = '';
 
-  posts.forEach(async(post) => {
+  posts.forEach((post) => {
     console.log(post.text);
     const postElement = createPostElement(post);
-    postElement.setAttribute('data-author-id', post.data().authorId);
-
-    // Verificar si postElement es un nodo válido antes de agregarlo
-    if (postElement instanceof Node) {
     allPostsContainer.appendChild(postElement);
-    }
   });
-}
+};
+
 // Mostrar los posts en la pantalla cuando la página se carga inicialmente
 listenToPosts((posts) => {
   showPosts(posts);
@@ -190,6 +132,8 @@ createPostForm.addEventListener('submit', (event) => {
   // Obtén el texto del post del textarea
   const textarea = createPostForm.querySelector('#textarea');
   const text = textarea.value;
+
+  // Crea el post en Firebase y muéstralo en la pantalla
  
   savePost(text) // Usamos la función savePost en lugar de addDoc
   .then(() => {
