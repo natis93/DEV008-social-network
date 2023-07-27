@@ -1,3 +1,4 @@
+import { signOutSession, stateChanged} from '../lib/auth'
 import {
   deletePost,
   listenToPosts,
@@ -29,13 +30,13 @@ export const feed = (onNavigate) => {
           </div>
           <ul class='menu__inside'>
             <li class='menu__item'>
-              <a href='#' class='link link--inside'>Profile</a>
+              <a href='#' class='link link--inside'id='profile'>Profile</a>
             </li>
             <li class='menu__item'>
-              <a href='#' class='link link--inside'>Notifications</a>
+              <a href='#' class='link link--inside'id='notifications'>Notifications</a>
             </li>
             <li class='menu__item'>
-              <a href='#' class='link link--inside'>Log Out</a>
+              <a href='#' class='link link--inside'id='logOut'>Log Out</a>
             </li>
           </ul>
         </div>
@@ -149,15 +150,10 @@ const editIcon = postElement.querySelector('.edit-icon');
 if (post.data().author === currentUser){
     editIcon.style.display = 'inline-block'; 
     editIcon.addEventListener('click', () => {
-    handleEditPost(post.id, post.data().text);
-        // if (currentUser){
-        //     editIcon.style.display = 'inline-block'; 
-        // }else{
-        //     editIcon.style.display = 'none';
-        // }
-});}else{
-    editIcon.style.display = 'none';
-}
+      handleEditPost(post.id, post.data().text);
+    });} else {
+      editIcon.style.display = 'none';
+    }
 
 //---------------Evento like post-------
 const likeButton = postElement.querySelector('.like-icon');
@@ -189,7 +185,7 @@ createPostForm.addEventListener('submit', (event) => {
   const text = textarea.value;
 
   // Crea el post en Firebase y muéstralo en la pantalla
- 
+
   savePost(text) // Usamos la función savePost en lugar de addDoc
   .then(() => {
     console.log('Post saved');
@@ -220,6 +216,13 @@ const showPosts = (posts) => {
 listenToPosts((posts) => {
   showPosts(posts);
 });
+
+const logOut = homeDiv.querySelector('#logOut');
+logOut.addEventListener('click', (e) => {
+  e.preventDefault();
+  signOutSession(onNavigate, 'login');
+})
+
 
   return homeDiv;
 };

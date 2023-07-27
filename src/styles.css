@@ -257,7 +257,7 @@ body {
 }
 
 .menu__burger {
-  display: flex;
+  display: none;
 }
 
 .bars {
@@ -269,12 +269,12 @@ body {
   filter: brightness(0) saturate(100%) invert(17%) sepia(30%) saturate(4217%) hue-rotate(227deg) brightness(89%) contrast(90%);
 }
 
-.menu__inside {
+/* .menu__inside {
 
-}
+} */
 
 .menu__item {
-  display: none;
+  display: flex;
   flex-direction: column;
 
 }

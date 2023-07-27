@@ -2,7 +2,8 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signInWithRedirect,
-  onAuthStateChanged
+  onAuthStateChanged,
+  signOut
 } from 'firebase/auth';
 import { auth, provider } from './firebase';
 
@@ -17,14 +18,27 @@ export const signInUser = (email, password) =>
 export const signInGoogle = () => 
   signInWithRedirect(auth, provider); 
 
-export const stateChanged = () =>
-  onAuthStateChanged(auth, (user) => {
+export const signOutSession = (onNavigate, pathName) => 
+signOut(auth)
+.then(() => {
+  // Sign-out successful.
+  onNavigate(`/${pathName}`);
+  console.log('sign out')
+}).catch((error) => {
+// An error happened.
+});
+
+  export const stateChanged =  
+    onAuthStateChanged(auth, (user) => {
     if (user) {
+      console.log('auth: signed in')
+      return user
       // User is signed in, see docs for a list of available properties
       // https://firebase.google.com/docs/reference/js/auth.user
-      const uid = user.uid;
+      //const uid = user.uid;
       // ...
     } else {
+      console.log('auth: signed out')
       // User is signed out
       // ...
     }
