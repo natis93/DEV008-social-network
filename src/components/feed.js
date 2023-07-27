@@ -76,24 +76,7 @@ export const feed = (onNavigate) => {
   const createPostForm = homeDiv.querySelector('.container__create-new-post');
   const allPostsContainer = homeDiv.querySelector('.container__all-posts');
 
-  
-  // Función para crear un nuevo post en firebase
-  const createPostAndShow = (text, username) => {
-    savePost(text) // Usamos la función savePost en lugar de addDoc
-      .then(() => {
-        // El post se ha guardado exitosamente
-        console.log('Post saved');
-        // Luego, mostramos el post en la pantalla (puedes modificar la lógica según tus necesidades)
-        const postElement = createPostElement({ text, authorUsername: username });
-        allPostsContainer.appendChild(postElement);
-      })
-      .catch((error) => {
-        // Ocurrió un error al guardar el post
-        console.error('Error saving the post:', error);
-      });
-  };
-
-// Función para crear el elemento HTML que representa un post
+  // Función para crear el elemento HTML que representa un post
 const createPostElement = (post) => {
   console.log(post.id);
   console.log(auth.currentUser.displayName)
@@ -103,10 +86,10 @@ const createPostElement = (post) => {
     <p class='post-username'>Author: ${post.data().author}</p>
     <p class='post-content'>${post.data().text}</p>
     <div class='post-icons'>
-      <i class='fas fa-trash-alt delete-icon' data-post-id='${post.id}'></i>
-      <i class='fas fa-edit edit-icon' data-post-id='${post.id}'></i>
       <i class='fas fa-thumbs-up like-icon' data-post-id='${post.id}'></i>
       <span class='like-count' data-post-id='${post.id}'>${post.data().likes.length}</span>
+      <i class='fas fa-edit edit-icon' data-post-id='${post.id}'></i>
+      <i class='fas fa-trash-alt delete-icon' data-post-id='${post.id}'></i>
     </div>
   `;
 
@@ -129,29 +112,31 @@ deleteIcon.addEventListener('click', () => {
 }
 
 //--------------Función para actualizar la publicación--------------
+
 const handleEditPost = (postId, currentText) => {
     const editForm = document.createElement('form');
     editForm.innerHTML = `
-      <textarea class='edit-textarea'>${currentText}</textarea>
+      <textarea id='${postId}' class='edit-textarea'>${currentText}</textarea>
       <button type='submit' class='button button-save'>Save</button>
     `;
   
     // Mostrar el formulario de edición en el lugar del post original
     const postElement = allPostsContainer.querySelector(`[data-post-id='${postId}']`);
-    postElement.replaceWith(editForm);
+    postElement.toggle('editForm');
+    //postElement.replaceWith(editForm);
 
   // Agregamos evento submit al formulario de edición
     editForm.addEventListener('submit', (event) => {
     event.preventDefault()
-    const editTextarea = editForm.querySelectorAll('.edit-textarea');
-    const updatedText = editTextarea.value;
-
+    const editTextarea = document.getElementById(postId).value
+    console.log(postId)
+    console.log(editTextarea)
     // Actualizamos post en Firebase usando el método updatePost
-    updatePost(postId, updatedText)
+    updatePost(postId, editTextarea)
       .then(() => {
         console.log('Post updated');
-      })
-      .catch((error) => {
+
+      }).catch((error) => {
         console.error('Error updating the post:', error);
       });
   });
@@ -195,25 +180,7 @@ updatePostlikes(post.id,likedBy)
   return postElement;
 };
 
-// Función para mostrar los posts en la pantalla
-//Esta función recibe una lista de posts y se encarga de recorrer cada uno de ellos.
-const showPosts = (posts) => {
-  console.log(posts);
-  allPostsContainer.innerHTML = '';
-
-  posts.forEach((post) => {
-    console.log(post.text);
-    const postElement = createPostElement(post);
-    allPostsContainer.appendChild(postElement);
-  });
-};
-
-// Mostrar los posts en la pantalla cuando la página se carga inicialmente
-listenToPosts((posts) => {
-  showPosts(posts);
-});
-
-// Evento 'submit' del formulario para crear un nuevo post
+  // Evento 'submit' del formulario para crear un nuevo post
 createPostForm.addEventListener('submit', (event) => {
   event.preventDefault();
 
@@ -234,6 +201,24 @@ createPostForm.addEventListener('submit', (event) => {
 
   // Limpia el contenido del textarea después de crear el post
   textarea.value = '';
+});
+
+// Función para mostrar los posts en la pantalla
+//Esta función recibe una lista de posts y se encarga de recorrer cada uno de ellos.
+const showPosts = (posts) => {
+  console.log(posts);
+  allPostsContainer.innerHTML = '';
+
+  posts.forEach((post) => {
+    console.log(post.text);
+    const postElement = createPostElement(post);
+    allPostsContainer.appendChild(postElement);
+  });
+};
+
+  // Mostrar los posts en la pantalla cuando la página se carga inicialmente
+listenToPosts((posts) => {
+  showPosts(posts);
 });
 
   return homeDiv;
