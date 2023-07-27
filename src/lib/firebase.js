@@ -39,24 +39,9 @@ export const auth = getAuth(app);
 // Initialize Cloud Firestore and get a reference to the service
 export const db = getFirestore(app);
 
-/* export const savePost = (description) => {
-  console.log(description);
-}; */
-
-
 // Method to delete a post
 export const deletePost = async (postId) => {
   await deleteDoc(doc(db, 'post', postId));
-};
-
-// Method to update the likes of a post
-export const updateLikePost = async (postId) => {
-  const postRef = doc(db, 'post', postId);
-  const postSnapshot = await getDoc(postRef);
-  if (postSnapshot.exists()) {
-    const likes = postSnapshot.data().likes || 0;
-    await updateDoc(postRef, { likes: likes + 1 });
-  }
 };
 
 // Method to get the data of an author
@@ -74,8 +59,7 @@ export const savePost = async (text) => (
   addDoc(collection(db, 'post'), {
     text,
     author: auth.currentUser.email,
-    timeline: Date.now(),
-    liked_by: [],
+    timeline: new Date(),
     likes: [],
   })
 );
@@ -92,8 +76,11 @@ export const updatePostlikes = async (postId, newContent) => {
   await updateDoc(postRef, { likes: newContent });
 };
 
+// Method to listen to changes in the posts and sort
+const queryofPost = query(collection(db, 'post'), orderBy('timeline', 'desc'));
+
 export const listenToPosts = (callback) => {
-  onSnapshot(collection(db,'post'), callback);
+  onSnapshot(queryofPost, callback);
 };
 
-export const getCurrentUser = ()=>auth.currentUser.email;
+export const getCurrentUser = () => auth.currentUser.email;

@@ -1,6 +1,6 @@
+import { signOutSession, stateChanged} from '../lib/auth'
 import {
   deletePost,
-  updateLikePost,
   listenToPosts,
   updatePost,
   db,
@@ -30,13 +30,13 @@ export const feed = (onNavigate) => {
           </div>
           <ul class='menu__inside'>
             <li class='menu__item'>
-              <a href='#' class='link link--inside'>Profile</a>
+              <a href='#' class='link link--inside'id='profile'>Profile</a>
             </li>
             <li class='menu__item'>
-              <a href='#' class='link link--inside'>Notifications</a>
+              <a href='#' class='link link--inside'id='notifications'>Notifications</a>
             </li>
             <li class='menu__item'>
-              <a href='#' class='link link--inside'>Log Out</a>
+              <a href='#' class='link link--inside'id='logOut'>Log Out</a>
             </li>
           </ul>
         </div>
@@ -77,119 +77,31 @@ export const feed = (onNavigate) => {
   const createPostForm = homeDiv.querySelector('.container__create-new-post');
   const allPostsContainer = homeDiv.querySelector('.container__all-posts');
 
-  
-  // Función para crear un nuevo post en firebase
-  const createPostAndShow = (text, username) => {
-    savePost(text) // Usamos la función savePost en lugar de addDoc
-      .then(() => {
-        // El post se ha guardado exitosamente
-        console.log('Post saved');
-        // Luego, mostramos el post en la pantalla (puedes modificar la lógica según tus necesidades)
-        const postElement = createPostElement({ text, authorUsername: username });
-        allPostsContainer.appendChild(postElement);
-      })
-      .catch((error) => {
-        // Ocurrió un error al guardar el post
-        console.error('Error saving the post:', error);
-      });
-  };
-
-// Variable para llevar registro de los posts que ha dado "like" el usuario actual
-const likedPostsByAuthor = {};
-// Agregar el campo "likes" con valor 0 a los documentos existentes en la colección "post"
-const addLikesFieldToExistingPosts = async () => {
-  const postsRef = (db, 'post');
-  const postsSnapshot = await getDocs(postsRef);
-  postsSnapshot.forEach(async (postDoc) => {
-    // Verificar si el campo "likes" ya existe en el documento
-    if (!postDoc.data().hasOwnProperty('likes')) {
-      // Si el campo "likes" no existe, actualizar el documento para agregar el campo con valor 0
-      await updateDoc(doc(db, 'post', postDoc.id), { likes: 0 });
-    }
-  });
-};
-
-// Llamar a la función para agregar el campo "likes" a los documentos existentes
-addLikesFieldToExistingPosts();
-const handleLike = async (event) => {
-  const postId = event.target.getAttribute('data-post-id');
-  const authorId = event.target.getAttribute('data-author-id');
- 
-  // Verificar si el autor ya ha dado "like" a este post
-  if (likedPostsByAuthor[authorId] && likedPostsByAuthor[authorId][postId]) {
-  // Si ya ha dado like, restar el like en la base de datos y eliminarlo del registro local
-  await updateLikePost(postId, -1);
-  delete likedPostsByAuthor[authorId][postId];
-  event.target.classList.remove('liked');
-  // Restar un like en el contador de likes en la pantalla
-  const likeCountElement = document.querySelector(`[data-post-id='${postId}'] .like-count`);
-  likeCountElement.textContent = parseInt(likeCountElement.textContent) - 1;
-} else {
-  // Si no ha dado like, sumar el like en la base de datos y agregarlo al registro local
-  await updateLikePost(postId, 1);
-  likedPostsByAuthor[authorId] = likedPostsByAuthor[authorId] || {};
-  likedPostsByAuthor[authorId][postId] = true;
-  event.target.classList.add('liked');
-  // Sumar un like en el contador de likes en la pantalla
-  const likeCountElement = document.querySelector(`[data-post-id='${postId}'] .like-count`);
-  if (likeCountElement) {
-  likeCountElement.textContent = parseInt(likeCountElement.textContent) + 1;
-}
-}
-};
-
-//--------------Función para editar--------------
-const handleEditPost = (postId, currentText) => {
-  const editForm = document.createElement('form');
-  editForm.innerHTML = `
-    <textarea id='edit-textarea'>${currentText}</textarea>
-    <button type='submit'>Save</button>
-  `;
-
-  // Mostrar el formulario de edición en el lugar del post original
-  const postElement = allPostsContainer.querySelector(`[data-post-id='${postId}']`);
-  postElement.replaceWith(editForm);
-
-  // Agregamos evento submit al formulario de edición
-  editForm.addEventListener('submit', (event) => {
-    event.preventDefault();
-    const editTextarea = editForm.querySelector('#edit-textarea');
-    const updatedText = editTextarea.value;
-
-    // Actualizamos post en Firebase usando el método updatePost
-    updatePost(postId, updatedText)
-      .then(() => {
-        console.log('Post updated');
-      })
-      .catch((error) => {
-        console.error('Error updating the post:', error);
-      });
-  });
-};
-
-
-
-// Función para crear el elemento HTML que representa un post
+  // Función para crear el elemento HTML que representa un post
 const createPostElement = (post) => {
   console.log(post.id);
+  console.log(auth.currentUser.displayName)
   const postElement = document.createElement('div');
   postElement.className = 'post';
   postElement.innerHTML = `
     <p class='post-username'>Author: ${post.data().author}</p>
     <p class='post-content'>${post.data().text}</p>
     <div class='post-icons'>
-      <i class='fas fa-trash-alt delete-icon' data-post-id='${post.id}'></i>
-      <i class='fas fa-edit edit-icon' data-post-id='${post.id}'></i>
       <i class='fas fa-thumbs-up like-icon' data-post-id='${post.id}'></i>
       <span class='like-count' data-post-id='${post.id}'>${post.data().likes.length}</span>
+      <i class='fas fa-edit edit-icon' data-post-id='${post.id}'></i>
+      <i class='fas fa-trash-alt delete-icon' data-post-id='${post.id}'></i>
     </div>
   `;
-// -------------Para borrar post---------------
+
+//---------------Usuario actual----------------
+const currentUser = getCurrentUser()
+
+// -------------Función para borrar post---------------
 const deleteIcon = postElement.querySelector('.delete-icon');
-const currentUserEmail = auth.currentUser.email;
 
 //Para verificar si el autor coincide con el usuario de la red social
-if (post.data().author === currentUserEmail) {
+if (post.data().author === currentUser) {
   deleteIcon.style.display = 'inline-block';
 //evento para borrar post
 deleteIcon.addEventListener('click', () => {
@@ -200,19 +112,53 @@ deleteIcon.addEventListener('click', () => {
   deleteIcon.style.display = 'none';
 }
 
+//--------------Función para actualizar la publicación--------------
+
+const handleEditPost = (postId, currentText) => {
+    const editForm = document.createElement('form');
+    editForm.innerHTML = `
+      <textarea id='${postId}' class='edit-textarea'>${currentText}</textarea>
+      <button type='submit' class='button button-save'>Save</button>
+    `;
+  
+    // Mostrar el formulario de edición en el lugar del post original
+    const postElement = allPostsContainer.querySelector(`[data-post-id='${postId}']`);
+    postElement.toggle('editForm');
+    //postElement.replaceWith(editForm);
+
+  // Agregamos evento submit al formulario de edición
+    editForm.addEventListener('submit', (event) => {
+    event.preventDefault()
+    const editTextarea = document.getElementById(postId).value
+    console.log(postId)
+    console.log(editTextarea)
+    // Actualizamos post en Firebase usando el método updatePost
+    updatePost(postId, editTextarea)
+      .then(() => {
+        console.log('Post updated');
+
+      }).catch((error) => {
+        console.error('Error updating the post:', error);
+      });
+  });
+  
+};
 //--------------Evento editar post---------
 
 const editIcon = postElement.querySelector('.edit-icon');
-editIcon.addEventListener('click', () => {
-  handleEditPost(post.id, post.data().text);
-});
 
-//---------------Para ícono de Like-------
+if (post.data().author === currentUser){
+    editIcon.style.display = 'inline-block'; 
+    editIcon.addEventListener('click', () => {
+      handleEditPost(post.id, post.data().text);
+    });} else {
+      editIcon.style.display = 'none';
+    }
+
+//---------------Evento like post-------
 const likeButton = postElement.querySelector('.like-icon');
-likeButton.setAttribute('data-author-id', post.data().authorId); // Agregar el ID del autor como atributo
 likeButton.addEventListener('click',() => {
-const currentUser = getCurrentUser()
-const likedBy =post.data().likes
+const likedBy = post.data().likes
 console.log(currentUser)
 console.log(post.data().likes)
 if (post.data().likes.includes(currentUser)){
@@ -230,25 +176,7 @@ updatePostlikes(post.id,likedBy)
   return postElement;
 };
 
-// Función para mostrar los posts en la pantalla
-//Esta función recibe una lista de posts y se encarga de recorrer cada uno de ellos.
-const showPosts = (posts) => {
-  console.log(posts);
-  allPostsContainer.innerHTML = '';
-
-  posts.forEach((post) => {
-    console.log(post.text);
-    const postElement = createPostElement(post);
-    allPostsContainer.appendChild(postElement);
-  });
-};
-
-// Mostrar los posts en la pantalla cuando la página se carga inicialmente
-listenToPosts((posts) => {
-  showPosts(posts);
-});
-
-// Evento 'submit' del formulario para crear un nuevo post
+  // Evento 'submit' del formulario para crear un nuevo post
 createPostForm.addEventListener('submit', (event) => {
   event.preventDefault();
 
@@ -257,7 +185,7 @@ createPostForm.addEventListener('submit', (event) => {
   const text = textarea.value;
 
   // Crea el post en Firebase y muéstralo en la pantalla
- 
+
   savePost(text) // Usamos la función savePost en lugar de addDoc
   .then(() => {
     console.log('Post saved');
@@ -271,9 +199,32 @@ createPostForm.addEventListener('submit', (event) => {
   textarea.value = '';
 });
 
+// Función para mostrar los posts en la pantalla
+//Esta función recibe una lista de posts y se encarga de recorrer cada uno de ellos.
+const showPosts = (posts) => {
+  console.log(posts);
+  allPostsContainer.innerHTML = '';
+
+  posts.forEach((post) => {
+    console.log(post.text);
+    const postElement = createPostElement(post);
+    allPostsContainer.appendChild(postElement);
+  });
+};
+
+  // Mostrar los posts en la pantalla cuando la página se carga inicialmente
+listenToPosts((posts) => {
+  showPosts(posts);
+});
+
+const logOut = homeDiv.querySelector('#logOut');
+logOut.addEventListener('click', (e) => {
+  e.preventDefault();
+  signOutSession(onNavigate, 'login');
+})
+
+
   return homeDiv;
 };
 
-
-//Hola Caro
 
