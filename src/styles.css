@@ -609,4 +609,12 @@ body {
     width: 59rem;
     margin: 1.2rem 2rem;
   }
+
+  /*Styles for failure text*/
+.failure-text {
+  margin: 5px 0 0 5px;
+  font-size: 14px;
+  text-align: center;
+  color: #757575;
+}
 }
