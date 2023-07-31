@@ -8,7 +8,7 @@ import { feed } from './components/feed.js';
 const rootDiv = document.getElementById('root');
 
 const routes = {
-  '/': home,
+  '/': login,
   '/register': register,
   '/login': login,
   '/feed': feed,
