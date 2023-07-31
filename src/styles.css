@@ -257,7 +257,7 @@ body {
 }
 
 .menu__burger {
-  display: none;
+  display: flex;
 }
 
 .bars {
