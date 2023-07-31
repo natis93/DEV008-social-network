@@ -520,3 +520,101 @@ body {
     text-decoration: underline;
   }
 }
+
+
+/* Estilos para desktop */
+@media (min-width: 768px) {
+  .logo img {
+    width: 96px; /* Ajusta el tamaño del logo según tus necesidades */
+  }
+
+.Box__aside__main {
+  display: flex;
+  flex-direction: row;
+}
+
+  /* Estilos para el contenedor principal .container__main */
+  .container__main {
+    display: flex;
+    flex-direction: column; /* Cambia la dirección a fila para dispositivos de escritorio */
+    flex: 1;
+  }
+
+  /* Estilos para el aside .container__profile */
+  .container__profile {
+    display: flex;
+    width: 15rem;
+    height: 30rem;
+    margin: 2rem;
+     
+  }
+
+  .container__picture-profile{
+  display: flex;
+  align-items: center;
+  }
+
+  /* Estilos para el artículo de creación de posts .container__create-post */
+  .container__create-post {
+    margin: 2em 2em 0;
+    width: 59em;
+    height: 10em;
+    display: flex;
+  }
+
+  .container__icon {
+    display: flex;
+    align-items: center;
+    padding: .7rem .5rem;
+    margin-top: 1em;
+    margin-right: .7rem;
+  }
+  
+  .container__create-new-post {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    margin-top: 1.3em;
+  }
+
+  #textarea {
+    width: 50rem;
+    height: 2.5rem;
+    border-radius: .7rem;
+    padding: .2rem;
+    line-height: 2em;
+  }
+
+  .container__button_share {
+    display: flex;
+    flex-direction: column;
+    align-self: self-end;
+  }
+
+  .button-share {
+    width: 7rem;
+    text-align: center;
+    line-height: .1em;
+    padding: 1em;
+    letter-spacing: .05em;
+  }
+
+  /* Estilos para la sección de todos los posts .container__allPost */
+  .container__allPost {
+    margin: 1rem; 
+    flex: 1; 
+  }
+
+  div.post {
+    width: 59rem;
+    margin: 1.2rem 2rem;
+  }
+
+  /*Styles for failure text*/
+.failure-text {
+  margin: 5px 0 0 5px;
+  font-size: 14px;
+  text-align: center;
+  color: #f02849;
+}
+}
