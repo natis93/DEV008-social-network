@@ -191,20 +191,29 @@ export const feed = (onNavigate) => {
     const textarea = createPostForm.querySelector('#textarea');
     const text = textarea.value;
 
-    // Crea el post en Firebase y muéstralo en la pantalla
+    // Función para validar si el contenido del textarea no está vacío
+const isTextValid = (text) => {
+  return text.trim().length > 0; // Verifica si el texto contiene algún contenido visible
+};
 
-    savePost(text) // Usamos la función savePost en lugar de addDoc
-      .then(() => {
-        console.log('Post saved');
-      })
-      .catch((error) => {
-        // Ocurrió un error al guardar el post
-        console.error('Error saving the post:', error);
-      });
-
-    // Limpia el contenido del textarea después de crear el post
-    textarea.value = '';
+    if (isTextValid(text)) {
+      // Crea el post en Firebase y muéstralo en la pantalla
+      savePost(text)
+        .then(() => {
+          console.log('Post saved');
+        })
+        .catch((error) => {
+          // Ocurrió un error al guardar el post
+          console.error('Error saving the post:', error);
+        });
+  
+      // Limpia el contenido del textarea después de crear el post
+      textarea.value = '';
+    } else {
+      //alert('El campo de texto está vacío. Escribe algo antes de compartir.');
+    }
   });
+    // Crea el post en Firebase y muéstralo en la pantalla
 
   // Función para mostrar los posts en la pantalla
   //Esta función recibe una lista de posts y se encarga de recorrer cada uno de ellos.
