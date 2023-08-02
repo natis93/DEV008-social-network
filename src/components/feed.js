@@ -10,7 +10,7 @@ import {
   savePost,
 } from '../lib/firebase.js';
 
-//let showFeed = getElementById('root')
+ 
 
 export const feed = (onNavigate) => {
   const homeDiv = document.createElement('div');
@@ -23,24 +23,11 @@ export const feed = (onNavigate) => {
         <div class='logo'>
           <img src='../Images/space-purple.png' alt='logo space'>
         </div>
-        <div class='menu__burger'>
-          <div class='bars'>
-            <img src='../Images/bars.svg' alt='menu'>
-          </div>
-          <ul class='menu__inside'>
-            <li class='menu__item'>
-              <a href='#' class='link link--inside'id='profile'>Profile</a>
-            </li>
-            <li class='menu__item'>
-              <a href='#' class='link link--inside'id='notifications'>Notifications</a>
-            </li>
-            <li class='menu__item'>
+                <div class='menu__item'>
               <a href='#' class='link link--inside'id='logOut'>Log Out</a>
-            </li>
-          </ul>
-        </div>
+           </div>
       </header>
-      <div class= 'Box__aside__main'>
+      <div class= 'box__aside__main'>
         <aside class='container container__profile'>
           <div class='container__picture-profile'>
             <i class="fas fa-user-circle icon-profile"></i>
@@ -57,7 +44,7 @@ export const feed = (onNavigate) => {
         </aside>
         <main class='container container__main'>
           <article class='container__post container__create-post'>
-            <div class='container__icon'>
+            <div class='container__icon-feed'>
               <img src='../Images/icon.png' alt='icono planeta' class='icon-planet'>
             </div>
             <form class='container__create-new-post'>
@@ -65,9 +52,20 @@ export const feed = (onNavigate) => {
               <div class='container__button_share'>
                 <button class='button button-share' type='submit'>Share</button>
               </div>
+              
             </form>
           </article>
-          <section class='container__post container__all-posts'></section>
+          <div class="modal-container">
+  <div class="modal">
+    <p>¿Estás seguro que deseas eliminar este post?</p>
+    <div class="modal-buttons">
+      <button class="modal-button modal-button--cancel">Cancelar</button>
+      <button class="modal-button modal-button--accept">Aceptar</button>
+    </div>
+  </div>
+</div>
+
+  <section class='container__post container__all-posts'></section>
         </main>
       </div>
     </div>`;
@@ -80,6 +78,34 @@ export const feed = (onNavigate) => {
   const createPostForm = homeDiv.querySelector('.container__create-new-post');
   const allPostsContainer = homeDiv.querySelector('.container__all-posts');
 
+   // Función para ocultar el cuadro modal
+  const hideModal = () => {
+    const modalContainer = document.querySelector('.modal-container');
+    modalContainer.style.display = 'none';
+  };
+
+// Función para mostrar el cuadro modal
+const showModal = (postId) => {
+  const modalContainer = document.querySelector('.modal-container');
+  modalContainer.style.display = 'flex';
+
+  const cancelButton = modalContainer.querySelector('.modal-button--cancel');
+  const acceptButton = modalContainer.querySelector('.modal-button--accept');
+
+  cancelButton.addEventListener('click', () => {
+    hideModal();
+  });
+
+  acceptButton.addEventListener('click', () => {
+    hideModal();
+    deletePost(postId);
+  });
+};
+// Evento 'DOMContentLoaded' para ocultar el cuadro modal al cargar la página
+document.addEventListener('DOMContentLoaded', () => {
+  hideModal();
+});
+//let showFeed = getElementById('root')
   // Función para crear el elemento HTML que representa un post
   const createPostElement = (post) => {
     console.log(post.id);
@@ -98,7 +124,7 @@ export const feed = (onNavigate) => {
       <i class='fas fa-trash-alt delete-icon' data-post-id='${post.id}'></i>
     </div>
   `;
-
+ 
     //---------------Usuario actual----------------
     const currentUser = getCurrentUser();
 
@@ -111,7 +137,7 @@ export const feed = (onNavigate) => {
       //evento para borrar post
       deleteIcon.addEventListener('click', () => {
         const postId = deleteIcon.getAttribute('data-post-id');
-        deletePost(postId);
+        showModal(postId);
       });
     } else {
       deleteIcon.style.display = 'none';
@@ -195,8 +221,7 @@ export const feed = (onNavigate) => {
 const isTextValid = (text) => {
   return text.trim().length > 0; // Verifica si el texto contiene algún contenido visible
 };
-
-    if (isTextValid(text)) {
+  if (isTextValid(text)) {
       // Crea el post en Firebase y muéstralo en la pantalla
       savePost(text)
         .then(() => {
