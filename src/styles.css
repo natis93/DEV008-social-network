@@ -382,17 +382,12 @@ div.post {
   height: 1.6rem;
   line-height: .4rem;
 }
+
 .modal-container {
   display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
-  height: 100%;
-  background-color:hwb(253 23% 37% / 0.546); 
-  z-index: 999;
-  display: flex;
-  justify-content: center;
+  height: 100%; 
+justify-content: center;
   align-items: center;
 }
 
@@ -402,7 +397,7 @@ div.post {
   border-radius: 1.5rem;
   box-shadow: 5px 3px 15px rgba(0, 0, 0, 0.3);
   font-family: 'Poppins', sans-serif;
-  font-size: 1.5rem;
+  font-size: 1.0rem;
 }
 
 .modal-buttons {
@@ -440,12 +435,12 @@ div.post {
     flex-direction: row;
   } */
 
-/*Responsive*/
+
 
 /* @media (min-width: 481px) and (max-width: 768px) {
 } */
-
-@media (min-width: 769px) and (max-width: 1920px) {
+/*--------Responsive Desktop-----*/
+@media (min-width: 1024px) and (max-width: 1920px) {
   .container {
     display: flex;
     flex-direction: row;
@@ -560,8 +555,8 @@ div.post {
 }
 
 
-/* Estilos para desktop */
-@media (min-width: 768px) {
+/* Estilos para desktop Feed */
+@media (min-width: 1024px) {
   .logo img {
     width: 96px; /* Ajusta el tamaño del logo según tus necesidades */
   }
@@ -661,4 +656,99 @@ div.post {
   text-align: center;
   color: #f02849;
 }
+}
+
+/* Estilos para tabletas en modo landscape y desktop */
+@media (min-width: 700px) and (max-width: 1023px) {
+  .logo img {
+    width: 96px; /* Ajusta el tamaño del logo según tus necesidades */
+  }
+
+.box__aside__main {
+  display: flex;
+  flex-direction: row;
+}
+
+  /* Estilos para el contenedor principal .container__main */
+  .container__main {
+    display: flex;
+    flex-direction: column; 
+    flex: 1;
+  }
+
+  /* Estilos para el aside .container__profile */
+  .container__profile {
+    display: flex;
+    width: 15rem;
+    height: 30rem;
+    margin: 2rem;
+     
+  }
+
+  .container__picture-profile{
+  display: flex;
+  align-items: center;
+  }
+
+  /* Estilos para el artículo de creación de posts .container__create-post */
+  .container__create-post {
+    margin: 2em .6em 0;
+    width: 26rem;
+    height: 10em;
+    display: flex;
+  }
+
+  .container__icon-feed {
+    display: flex;
+    align-items: center;
+    padding: .7rem .5rem;
+    margin-bottom: 2.2em;
+    margin-right: .7rem;
+  }
+  
+  .container__create-new-post {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    margin-top: 1.3em;
+  }
+
+  #textarea {
+    width: 18rem;
+    height: 2.5rem;
+    background-color: #efefef;
+    border: 1px solid #e1e1e1;
+    border-radius: .7rem;
+   
+  }
+
+  #textarea::placeholder {
+  color: #848484;
+  padding: .4em .5rem;
+  }
+
+  .container__button_share {
+    display: flex;
+    flex-direction: column;
+    align-self: self-end;
+  }
+
+  .button-share {
+    width: 7rem;
+    text-align: center;
+    line-height: .1em;
+    padding: 1em;
+    letter-spacing: .05em;
+  }
+
+  /* Estilos para la sección de todos los posts .container__allPost */
+  .container__allPost {
+    margin: 1rem; 
+    flex: 1; 
+  }
+
+  div.post {
+    margin: 1.3em .6em 0;
+    width: 26rem;
+  }
 }

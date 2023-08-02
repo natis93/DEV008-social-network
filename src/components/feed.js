@@ -57,10 +57,10 @@ export const feed = (onNavigate) => {
           </article>
           <div class="modal-container">
   <div class="modal">
-    <p>¿Estás seguro que deseas eliminar este post?</p>
+    <p>Are you sure you want to delete this post?</p>
     <div class="modal-buttons">
-      <button class="modal-button modal-button--cancel">Cancelar</button>
-      <button class="modal-button modal-button--accept">Aceptar</button>
+      <button class="modal-button modal-button--cancel">Cancel</button>
+      <button class="modal-button modal-button--accept">Accept</button>
     </div>
   </div>
 </div>
