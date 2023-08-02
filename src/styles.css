@@ -558,7 +558,8 @@ justify-content: center;
 /* Estilos para desktop Feed */
 @media (min-width: 1024px) {
   .logo img {
-    width: 96px; /* Ajusta el tamaño del logo según tus necesidades */
+    width: 96px; 
+    margin-bottom: 1rem;
   }
 
 .box__aside__main {
@@ -661,7 +662,8 @@ justify-content: center;
 /* Estilos para tabletas en modo landscape y desktop */
 @media (min-width: 700px) and (max-width: 1023px) {
   .logo img {
-    width: 96px; /* Ajusta el tamaño del logo según tus necesidades */
+    width: 96px; 
+    
   }
 
 .box__aside__main {
