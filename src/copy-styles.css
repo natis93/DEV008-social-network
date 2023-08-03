@@ -34,7 +34,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-image: url(/picture/background.png);
+  background-image: url(/Images/background.png);
   background-size: cover;
   padding: 20px;
   box-sizing: border-box;
@@ -43,6 +43,7 @@ body {
 .container__header {
   display: flex;
   flex-direction: column;
+  /* align-items: center; */
   width: 261px;
 }
 
@@ -62,7 +63,6 @@ body {
   width: 56px;
   height: 49.22px;
   align-self: self-start;
-  padding: .7rem .5rem;
 }
 
 .form-register {
@@ -98,7 +98,7 @@ body {
 }
 
 .input::placeholder {
-  color: #848484
+  color:#848484
 }
 
 .button {
@@ -173,18 +173,20 @@ body {
 
 .container__icon-google {
   float: left;
+  margin-right: 12px;
   margin: 5px 12px 0px 0px;
 }
 
 .container__icon-google img {
-  filter: brightness(0) saturate(100%) invert(17%) sepia(0%) saturate(0%) hue-rotate(26deg) brightness(97%) contrast(83%);
+  filter: brightness(0) saturate(100%) invert(17%) sepia(0%) saturate(0%)
+    hue-rotate(26deg) brightness(97%) contrast(83%);
   width: 34px;
 }
 
 .container__redirect {
   display: flex;
   align-items: center;
-  margin-top: 10px;
+  margin-top: 10px;  
 }
 
 .container__description {
@@ -196,6 +198,7 @@ body {
 .text-redirect {
   font-size: 14px;
   font-weight: bold;
+  /* color: #513ba1; #472ea2 #4f33b2 */
   color: #f8f0ff;
   cursor: pointer;
 }
@@ -215,7 +218,7 @@ body {
   transform: translate(-50%, -50%);
 }
 
-/*Estilos de texto de error*/
+/*Styles for failure text*/
 .failure-text {
   margin: 5px 0 0 5px;
   font-size: 14px;
@@ -223,12 +226,12 @@ body {
   color: whitesmoke;
 }
 
-/*Estilos del Feed*/
-.container__feed {
+/*Styles Feed*/
+.container__feed{
   width: 100%;
 }
 
-.homeDiv {
+.homeDiv{
   display: flex;
   flex-direction: column;
   background-color: #E6E6E5
@@ -276,18 +279,12 @@ body {
   padding: 2rem;
   background-color: #f8f8f8;
   box-shadow: 5px 3px 15px rgba(0, 0, 0, 0.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
-.container__picture-profile {
-  width: 4em;
-}
 
 .container__explorer {
   display: flex;
-  align-items: center;
+  align-items: center; 
 }
 
 .icon-profile {
@@ -297,12 +294,12 @@ body {
 
 .explorer {
   margin-left: .2rem;
-  display: inline;
+  display: inline; 
   font-size: 1.5rem;
   color: #7261B2;
 }
 
-/*Estilos para crear un nuevo post*/
+/*Styles Feed create post*/
 .container__main {
   width: 100%;
   display: flex;
@@ -319,15 +316,15 @@ body {
   background-color: #f8f8f8;
   box-shadow: 5px 3px 15px rgba(0, 0, 0, 0.3);
 }
-
 /* Estilos para la sección de todos los posts .container__allPost */
-.container__all-posts {
-  width: 100%;
-  margin: 0 auto;
+.container__allPost {
+  margin: 1rem; 
+  flex: 1; 
 }
 
 div.post {
-  width: 100%;
+  width: 21rem;
+  margin: 1.2rem 2rem;
   border-radius: 1.5rem;
   margin: .5rem auto;
   padding: 1.3rem;
@@ -338,60 +335,65 @@ div.post {
 .delete-icon,
 .edit-icon,
 .like-icon {
-  color: #513ba1;
+  color: #513ba1; 
 }
 
 .post-username {
-  color: #513ba1;
+  color: #513ba1; 
   font-weight: bold;
+}
+
+
+.container__allPost {
+  width: 20em;
+  height: 12rem;
+  border-radius: 1.6rem;
+  margin: 2rem auto;
+  padding: 1.3rem;
+  box-shadow: 5px 3px 15px rgba(0, 0, 0, 0.3);
 }
 
 .icon-planet {
   width: 2rem;
   height: 2rem;
-  filter: brightness(0) saturate(100%) invert(28%) sepia(21%) saturate(2877%) hue-rotate(221deg) brightness(93%) contrast(101%);
+  filter: brightness(0) saturate(100%) invert(28%) sepia(21%) saturate(2877%)
+  hue-rotate(221deg) brightness(93%) contrast(101%);
+}
+
+.container__icon {
+  padding: .7rem .5rem;
 }
 
 #textarea {
   width: 17rem;
   height: 2.5rem;
   border-radius: 1.2rem;
-  padding: .7rem;
-  background-color: #efefef;
-  border: 1.5px solid #e1e1e1;
-  overflow: hidden;
+  padding: .2rem;
 }
 
 #textarea::placeholder {
   text-align: left;
-  line-height: 1em;
   font-family: 'Poppins', sans-serif;
   font-size: .8rem;
-  color: #848484;
 }
 
 .button-share {
   width: 5rem;
   height: 1.6rem;
-  line-height: .6rem;
+  line-height: .4rem;
 }
 
 .modal-container {
   display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
-  z-index: 1;
-  justify-content: center;
+  height: 100%; 
+justify-content: center;
   align-items: center;
 }
 
 .modal {
   background-color: white;
-  padding: 1.5rem;
+  padding: 1.5rem ;
   border-radius: 1.5rem;
   box-shadow: 5px 3px 15px rgba(0, 0, 0, 0.3);
   font-family: 'Poppins', sans-serif;
@@ -400,30 +402,44 @@ div.post {
 
 .modal-buttons {
   display: flex;
-  justify-content: space-between;
-  margin-top: 15px;
+  justify-content: flex-end;
+  margin-top: 10px;
 }
 
 .modal-button {
-  font-family: 'Poppins', sans-serif;
-  font-size: 1rem;
-  color: white;
   margin-left: 10px;
   padding: 8px 16px;
   cursor: pointer;
-  border: none;
-  border-radius: 20px;
 }
 
 .modal-button--cancel {
+  font-family: 'Poppins', sans-serif;
   background-color: #e74c3c;
+  color: white;
+  border-radius: 20px;
+  font-size: 1.3rem;
 }
 
 .modal-button--accept {
-  background-color: #513ba1;
+  font-family: 'Poppins', sans-serif;
+  background-color:#513ba1; 
+  color: white;
+  border-radius: 20px;
+  font-size: 1.3rem;
 }
 
-/*---------------Responsive Desktop-------------*/
+/*-----------------Responsive del feed----------*/
+/* @media (min-width: 769px) and (max-width: 1920px) {
+  .container {
+    display: flex;
+    flex-direction: row;
+  } */
+
+
+
+/* @media (min-width: 481px) and (max-width: 768px) {
+} */
+/*--------Responsive Desktop-----*/
 @media (min-width: 1024px) and (max-width: 1920px) {
   .container {
     display: flex;
@@ -432,7 +448,7 @@ div.post {
 
   .container__splash {
     width: 55%;
-    background-image: url(./picture/background.png);
+    background-image: url(./Images/background.png);
     background-size: cover;
     display: flex;
     flex-direction: column;
@@ -457,6 +473,7 @@ div.post {
   }
 
   .slogan {
+    font-size: 17px;
     color: #ffff;
     padding: 30px 10px;
     font-size: 1rem;
@@ -491,7 +508,8 @@ div.post {
   }
 
   .container__icon img {
-    filter: brightness(0) saturate(100%) invert(28%) sepia(21%) saturate(2877%) hue-rotate(221deg) brightness(93%) contrast(101%);
+    filter: brightness(0) saturate(100%) invert(28%) sepia(21%) saturate(2877%)
+      hue-rotate(221deg) brightness(93%) contrast(101%);
   }
 
   .input {
@@ -501,7 +519,7 @@ div.post {
   }
 
   .input::placeholder {
-    color: #919191
+    color:#919191
   }
 
   .line {
@@ -526,54 +544,51 @@ div.post {
   .text-redirect {
     font-size: 14px;
     font-weight: bold;
+    /* color: #513ba1; #472ea2 #4f33b2 */
     color: #513ba1;
     cursor: pointer;
   }
-
+  
   .text-redirect:hover {
     text-decoration: underline;
   }
+}
 
-  .logo {
-    width: 9em;
-    padding: .5em 0;
-    margin: 0.4rem 0.8rem;
-  }
 
+/* Estilos para desktop Feed */
+@media (min-width: 1024px) {
   .logo img {
-    width: 100%;
+    width: 96px; 
+    margin-bottom: 1rem;
   }
 
-  .link {
-    font-size: 18px;
-    padding: .3em 0;
-  }
+.box__aside__main {
+  display: flex;
+  flex-direction: row;
+}
 
-  .box__aside__main {
-    display: flex;
-    flex-direction: row;
-  }
-
-  /* Estilos para el contenedor de posts */
+  /* Estilos para el contenedor principal .container__main */
   .container__main {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; 
     flex: 1;
   }
 
-  /* Estilos para el perfil */
+  /* Estilos para el aside .container__profile */
   .container__profile {
+    display: flex;
     width: 15rem;
     height: 30rem;
-    margin: 1.5rem;
+    margin: 2rem;
+     
   }
 
-  .container__picture-profile {
-    display: flex;
-    align-items: center;
+  .container__picture-profile{
+  display: flex;
+  align-items: center;
   }
 
-  /* Estilos para el artículo de creación de un nuevo post */
+  /* Estilos para el artículo de creación de posts .container__create-post */
   .container__create-post {
     margin: 2em 2em 0;
     width: 59em;
@@ -588,7 +603,7 @@ div.post {
     margin-bottom: 2.2em;
     margin-right: .7rem;
   }
-
+  
   .container__create-new-post {
     display: flex;
     flex-direction: column;
@@ -602,11 +617,12 @@ div.post {
     background-color: #efefef;
     border: 1px solid #e1e1e1;
     border-radius: .7rem;
+   
   }
 
   #textarea::placeholder {
-    color: #848484;
-    padding: .4em .5rem;
+  color: #848484;
+  padding: .4em .5rem;
   }
 
   .container__button_share {
@@ -625,8 +641,8 @@ div.post {
 
   /* Estilos para la sección de todos los posts .container__allPost */
   .container__allPost {
-    margin: 1rem;
-    flex: 1;
+    margin: 1rem; 
+    flex: 1; 
   }
 
   div.post {
@@ -635,29 +651,30 @@ div.post {
   }
 
   /*Styles for failure text*/
-  .failure-text {
-    margin: 5px 0 0 5px;
-    font-size: 14px;
-    text-align: center;
-    color: #f02849;
-  }
+.failure-text {
+  margin: 5px 0 0 5px;
+  font-size: 14px;
+  text-align: center;
+  color: #f02849;
+}
 }
 
-/*-------- Responsive tablet en modo landscape y desktop----------*/
+/* Estilos para tabletas en modo landscape y desktop */
 @media (min-width: 700px) and (max-width: 1023px) {
   .logo img {
-    width: 96px;
+    width: 96px; 
+    
   }
 
-  .box__aside__main {
-    display: flex;
-    flex-direction: row;
-  }
+.box__aside__main {
+  display: flex;
+  flex-direction: row;
+}
 
   /* Estilos para el contenedor principal .container__main */
   .container__main {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; 
     flex: 1;
   }
 
@@ -667,11 +684,12 @@ div.post {
     width: 15rem;
     height: 30rem;
     margin: 2rem;
+     
   }
 
-  .container__picture-profile {
-    display: flex;
-    align-items: center;
+  .container__picture-profile{
+  display: flex;
+  align-items: center;
   }
 
   /* Estilos para el artículo de creación de posts .container__create-post */
@@ -689,7 +707,7 @@ div.post {
     margin-bottom: 2.2em;
     margin-right: .7rem;
   }
-
+  
   .container__create-new-post {
     display: flex;
     flex-direction: column;
@@ -703,11 +721,12 @@ div.post {
     background-color: #efefef;
     border: 1px solid #e1e1e1;
     border-radius: .7rem;
+   
   }
 
   #textarea::placeholder {
-    color: #848484;
-    padding: .4em .5rem;
+  color: #848484;
+  padding: .4em .5rem;
   }
 
   .container__button_share {
@@ -726,48 +745,12 @@ div.post {
 
   /* Estilos para la sección de todos los posts .container__allPost */
   .container__allPost {
-    margin: 1rem;
-    flex: 1;
+    margin: 1rem; 
+    flex: 1; 
   }
 
   div.post {
     margin: 1.3em .6em 0;
     width: 26rem;
-  }
-}
-
-/*---------------------------Portatil-------------------------------*/
-@media (min-width: 1024px) and (max-width: 1280px) {
-  .homeDiv{
-    width: 100%
-  }
-
-  .container__profile{
-    width: 20%
-  }
-
-  .container__main{
-    width: 80%;
-  }
-
-  .container__create-post{
-    width: 90%;
-  }
-
-  .container__create-new-post{
-    width: inherit;
-  }
-
-  #textarea {
-    width: 100%;
-  }
-
-  .container__all-posts{
-    width: 90%;
-    margin: 0;
-  }
-
-  div.post {
-    width: 100%;
   }
 }

@@ -15,7 +15,7 @@ export const register = (onNavigate) => {
 
   const planetImg = document.createElement('img');
   planetImg.className = 'planet-img';
-  planetImg.src = '../Images/planet.png';
+  planetImg.src = '../picture/planet.png';
   planetDiv.append(planetImg);
 
   const brandDiv = document.createElement('div');
@@ -24,7 +24,7 @@ export const register = (onNavigate) => {
 
   const brand = document.createElement('img');
   brand.className = 'brand';
-  brand.src = '../Images/space-white.png';
+  brand.src = '../picture/space-white.png';
   brandDiv.append(brand);
 
   const sloganDiv = document.createElement('div');
@@ -61,7 +61,7 @@ export const register = (onNavigate) => {
 
   const icon = document.createElement('img');
   icon.className = 'icon';
-  icon.src = '../Images/icon.png';
+  icon.src = '../picture/icon.png';
   iconDiv.appendChild(icon);
 
   const titleDiv = document.createElement('div');
