@@ -175,11 +175,13 @@ export const register = (onNavigate) => {
       })
         .catch((error) => {
           console.error(error);
+
           if (error.code === 'auth/email-already-in-use') {
             failureText.textContent = 'Email already in use';
           } else if (error.code === 'auth/invalid-email') {
             failureText.textContent = 'Invalid email';
           }
+          console.log(failureText.textContent)
           failureText.classList.remove('failure-text-hidden');
         });
       buttonDataRegister.disabled = true;

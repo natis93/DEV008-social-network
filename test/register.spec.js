@@ -1,4 +1,3 @@
-// import register from '../src/components/register';
 import { createUser } from '../src/lib/auth.js';
 import { register } from '../src/components/register';
 
@@ -43,14 +42,12 @@ describe('Unit tests for register', () => {
   });
 
   it('should display an error message if the password is too short', async () => {
-    createUser.mockRejectedValueOnce(new Error('auth/weak-password'));
-
     inputEmail.value = 'valid-email@example.com';
     inputPassword.value = 'short';
 
     buttonDataRegister.click();
     await tick();
-
+    console.log(failureText.textContent)
     expect(failureText.textContent).toBe(
       'Spaceship Error! Your password needs 6 characters!'
     );
@@ -58,15 +55,14 @@ describe('Unit tests for register', () => {
   });
 
   it('should display an error message if the email is already in use', async () => {
+    createUser.mockRejectedValueOnce({ code: 'auth/email-already-in-use' });
     const errorMessage = 'Email already in use';
-    createUser.mockRejectedValueOnce(new Error('auth/email-already-in-use'));
-  
     inputEmail.value = 'existing-email@example.com';
-    inputPassword.value = 'password';
+    inputPassword.value = 'Am0jzw56941+U';
   
     buttonDataRegister.click();
     await tick();
-  
+
     expect(failureText.textContent).toBe(errorMessage);
     expect(failureText.classList.contains('failure-text-hidden')).toBe(false);
   });
