@@ -1,9 +1,8 @@
 import { signInUser, signInGoogle } from '../lib/auth.js';
-import planetImge from '../picture/planet.png';
-import nombre from '../picture/space-white.png';
-import iconPlanit from '../picture/icon.png';
-import iconGoog from '../picture/google.svg';
-
+import pricipalPlanet from '../picture/planet.png';
+import logoWhite from '../picture/space-white.png';
+import iconMiniaturePlanet from '../picture/icon.png';
+import googleIcon from '../picture/google.svg';
 
 export const login = (onNavigate) => { 
   const homeDiv = document.createElement('div');
@@ -20,7 +19,7 @@ export const login = (onNavigate) => {
 
   const planetImg = document.createElement('img');
   planetImg.className = 'planet-img';
-  planetImg.src = planetImge;
+  planetImg.src = pricipalPlanet;
   planetDiv.append(planetImg);
 
   const brandDiv = document.createElement('div');
@@ -29,7 +28,7 @@ export const login = (onNavigate) => {
 
   const brand = document.createElement('img');
   brand.className = 'brand';
-  brand.src = nombre;
+  brand.src = logoWhite;
   brandDiv.append(brand);
 
   const sloganDiv = document.createElement('div');
@@ -51,7 +50,6 @@ export const login = (onNavigate) => {
   btnStartDiv.append(btnStart);
 
   // Form
-
   const formDiv = document.createElement('div');
   formDiv.className = 'container__form';
   homeDiv.append(formDiv);
@@ -66,7 +64,7 @@ export const login = (onNavigate) => {
 
   const icon = document.createElement('img');
   icon.className = 'icon';
-  icon.src = iconPlanit;
+  icon.src = iconMiniaturePlanet;
   iconDiv.appendChild(icon);
 
   const titleDiv = document.createElement('div');
@@ -147,7 +145,7 @@ export const login = (onNavigate) => {
 
   const iconGoogle = document.createElement('img');
   iconGoogle.className = 'icon-google';
-  iconGoogle.src = iconGoog;
+  iconGoogle.src = googleIcon;
   iconGoogleDiv.appendChild(iconGoogle);
 
   // Redirect to Register
