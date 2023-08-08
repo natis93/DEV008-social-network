@@ -1,6 +1,6 @@
 import { signInUser, signInGoogle } from '../lib/auth.js';
 import planetImge from '../picture/planet.png';
-import Logo from '../picture/space-white.png';
+import nombre from '../picture/space-white.png';
 import iconPlanit from '../picture/icon.png';
 import iconGoog from '../picture/google.svg';
 
@@ -29,7 +29,7 @@ export const login = (onNavigate) => {
 
   const brand = document.createElement('img');
   brand.className = 'brand';
-  brand.src = Logo;
+  brand.src = nombre;
   brandDiv.append(brand);
 
   const sloganDiv = document.createElement('div');
