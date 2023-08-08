@@ -1,4 +1,6 @@
 import { signInUser, signInGoogle } from '../lib/auth.js';
+import planetImge from '../picture/planet.png';
+import Logo from '../picture/space-white.png';
 
 export const login = (onNavigate) => { 
   const homeDiv = document.createElement('div');
@@ -15,7 +17,7 @@ export const login = (onNavigate) => {
 
   const planetImg = document.createElement('img');
   planetImg.className = 'planet-img';
-  planetImg.src = '../picture/planet.png';
+  planetImg.src = planetImge;
   planetDiv.append(planetImg);
 
   const brandDiv = document.createElement('div');
@@ -24,7 +26,7 @@ export const login = (onNavigate) => {
 
   const brand = document.createElement('img');
   brand.className = 'brand';
-  brand.src = '../picture/space-white.png';
+  brand.src = Logo;
   brandDiv.append(brand);
 
   const sloganDiv = document.createElement('div');
