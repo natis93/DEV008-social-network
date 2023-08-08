@@ -1,4 +1,6 @@
 import { signOutSession } from '../lib/auth';
+import logoFeed from '../picture/space-purple.png';
+import iconPurple from '../picture/icon.png';
 import {
   deletePost,
   listenToPosts,
@@ -17,7 +19,7 @@ export const feed = (onNavigate) => {
     <div class='homeDiv'>
       <header class='menu'>
         <div class='logo'>
-          <img src='../picture/space-purple.png' alt='logo space'>
+          <img src= ${logoFeed} alt='logo space'>
         </div>
           <div class='menu__item'>
             <a href='#' class='link link--inside'id='logOut'>Log Out</a>
@@ -38,7 +40,7 @@ export const feed = (onNavigate) => {
         <main class='container container__main'>
           <article class='container__post container__create-post'>
             <div class='container__icon-feed'>
-              <img src='../picture/icon.png' alt='icono planeta' class='icon-planet'>
+              <img src= ${iconPurple} alt='icono planeta' class='icon-planet'>
             </div>
             <form class='container__create-new-post'>
               <textarea id='textarea' placeholder='¿Lost in space? Send a sign...'></textarea>
