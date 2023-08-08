@@ -63,7 +63,7 @@ Para poder visualizar como deseamos que se vea la plataforma nos basamos en prot
 ![Feed](<src/picture/Desktop  Feed.png>)
 
 ## 5. Producto final✨
-Puede ingresar <a href="https://space-the-social-network.netlify.app/" target="_blank">aqui</a> para poder ver nuestra red social.
+Puede ingresar [aqui](https://space-the-social-network.netlify.app/) para poder ver nuestra red social.
 
 ![Producto final](src/picture/mock1.jpg)
 ![Producto final](src/picture/mock2.jpg)
