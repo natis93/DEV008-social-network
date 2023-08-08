@@ -1,6 +1,9 @@
 import { signInUser, signInGoogle } from '../lib/auth.js';
 import planetImge from '../picture/planet.png';
 import Logo from '../picture/space-white.png';
+import iconPlanit from '../picture/icon.png';
+import iconGoog from '../picture/google.svg';
+
 
 export const login = (onNavigate) => { 
   const homeDiv = document.createElement('div');
@@ -63,7 +66,7 @@ export const login = (onNavigate) => {
 
   const icon = document.createElement('img');
   icon.className = 'icon';
-  icon.src = '../picture/icon.png';
+  icon.src = iconPlanit;
   iconDiv.appendChild(icon);
 
   const titleDiv = document.createElement('div');
@@ -144,7 +147,7 @@ export const login = (onNavigate) => {
 
   const iconGoogle = document.createElement('img');
   iconGoogle.className = 'icon-google';
-  iconGoogle.src = '../picture/google.svg';
+  iconGoogle.src = iconGoog;
   iconGoogleDiv.appendChild(iconGoogle);
 
   // Redirect to Register
