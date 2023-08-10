@@ -228,7 +228,6 @@ export const login = (onNavigate) => {
 
     signInGoogle()
       .then((response) => {
-        // This gives you a Google Access Token. You can use it to access the Google API.
 
         // The signed-in user info.
         const user = response.user;

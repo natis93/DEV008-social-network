@@ -71,6 +71,7 @@ Puede ingresar [aqui](https://space-the-social-network.netlify.app/) para poder 
 ## 6. Issues
 Funcionalidades por implementar:
 
+* Posibilidad de tener dos métodos para iniciar con google dependiendo del dispositivo
 * Posibilidad de poner foto de perfil y nombre de usuario
 * Posibilidad de compartir publicaciones con fotos y enlaces
 * Posibilidad de comentar publicaciones
