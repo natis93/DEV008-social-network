@@ -1,6 +1,7 @@
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signInWithPopup,
   signInWithRedirect,
   onAuthStateChanged,
   signOut
@@ -15,8 +16,11 @@ export const createUser = (email, password) =>
 export const signInUser = (email, password) => 
   signInWithEmailAndPassword(auth, email, password);
 
-export const signInGoogle = () => 
-  signInWithRedirect(auth, provider); 
+// export const signInGoogle = () => 
+//   signInWithRedirect(auth, provider); 
+
+  export const signInGoogle = () => 
+  signInWithPopup(auth, provider); 
 
 export const signOutSession = (onNavigate, pathName) => 
 signOut(auth)

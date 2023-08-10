@@ -1,5 +1,8 @@
 {
   "name": "social-network",
+  "jest": {
+    "verbose": true
+  },
   "private": true,
   "version": "1.0.0",
   "description": "Social Network @ Laboratoria",

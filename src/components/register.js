@@ -1,8 +1,9 @@
 import { createUser } from '../lib/auth.js';
+/* eslint-disable import/no-extraneous-dependencies */
 import pricipalPlanet from '../picture/planet.png';
 import logoWhite from '../picture/space-white.png';
 import iconMiniaturePlanet from '../picture/icon.png';
-
+// /* eslint-disable import/no-extraneous-dependencies */
 export const register = (onNavigate) => {
   const homeDiv = document.createElement('div');
   homeDiv.className = 'container';
@@ -36,7 +37,7 @@ export const register = (onNavigate) => {
 
   const slogan = document.createElement('p');
   slogan.className = 'slogan';
-  slogan.textContent = 'Connecting the Universe,\n  One Explorer at a Time'
+  slogan.textContent = 'Connecting the Universe,\n  One Explorer at a Time';
   sloganDiv.append(slogan);
 
   const btnStartDiv = document.createElement('div');
@@ -45,13 +46,13 @@ export const register = (onNavigate) => {
 
   const btnStart = document.createElement('p');
   btnStart.className = 'btn-start';
-  btnStart.textContent = 'Start your adventure'
+  btnStart.textContent = 'Start your adventure';
   btnStartDiv.append(btnStart);
 
   // Form
   const formDiv = document.createElement('div');
   formDiv.className = 'container__form';
-  homeDiv.append(formDiv)
+  homeDiv.append(formDiv);
 
   const headerDiv = document.createElement('div');
   headerDiv.className = 'container__header';
@@ -70,7 +71,6 @@ export const register = (onNavigate) => {
   titleDiv.textContent = 'Start your adventure here';
   titleDiv.className = 'container__title';
   headerDiv.appendChild(titleDiv);
-
 
   // Create form to register
   const form = document.createElement('form');
@@ -106,14 +106,14 @@ export const register = (onNavigate) => {
   buttonDataRegister.value = 'Register';
   form.appendChild(buttonDataRegister);
 
-
   // Redirect to Log In
   const redirectSignInDiv = document.createElement('div');
   redirectSignInDiv.className = 'container__redirect container__redirect-login';
   form.appendChild(redirectSignInDiv);
 
   const descriptionTextLoginDiv = document.createElement('div');
-  descriptionTextLoginDiv.className = 'container__description container__description-login--inside';
+  descriptionTextLoginDiv.className =
+    'container__description container__description-login--inside';
   redirectSignInDiv.appendChild(descriptionTextLoginDiv);
 
   const descriptionTextLogin = document.createElement('p');
@@ -130,7 +130,6 @@ export const register = (onNavigate) => {
   const failureText = document.createElement('p');
   failureText.className = 'failure-text failure-text-hidden';
   form.appendChild(failureText);
-
 
   // Action of button
   buttonDataRegister.addEventListener('click', (e) => {
@@ -171,9 +170,9 @@ export const register = (onNavigate) => {
     } else {
       createUser(email, password, username)
         .then(() => {
-        console.log('User registered successfully');
-        onNavigate('/feed');
-      })
+          console.log('User registered successfully');
+          onNavigate('/feed');
+        })
         .catch((error) => {
           if (error.code === 'auth/email-already-in-use') {
             failureText.textContent = 'Email already in use';
