@@ -417,7 +417,7 @@ justify-content: center;
   background-color: #e74c3c;
   color: white;
   border-radius: 20px;
-  font-size: 1.0rem;
+  font-size: 1.3rem;
 }
 
 .modal-button--accept {
@@ -425,7 +425,7 @@ justify-content: center;
   background-color:#513ba1; 
   color: white;
   border-radius: 20px;
-  font-size: 1.0rem;
+  font-size: 1.3rem;
 }
 
 /*-----------------Responsive del feed----------*/

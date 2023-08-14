@@ -229,6 +229,7 @@ export const login = (onNavigate) => {
 
         // The signed-in user info.
         const user = response.user;
+        onNavigate('/feed');
         console.log(response);
         // IdP data available using getAdditionalUserInfo(response)
         // ...
