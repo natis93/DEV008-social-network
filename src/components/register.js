@@ -1,4 +1,7 @@
 import { createUser } from '../lib/auth.js';
+import pricipalPlanet from '../picture/planet.png';
+import logoWhite from '../picture/space-white.png';
+import iconMiniaturePlanet from '../picture/icon.png';
 
 export const register = (onNavigate) => {
   const homeDiv = document.createElement('div');
@@ -15,7 +18,7 @@ export const register = (onNavigate) => {
 
   const planetImg = document.createElement('img');
   planetImg.className = 'planet-img';
-  planetImg.src = '../Images/planet.png';
+  planetImg.src = pricipalPlanet;
   planetDiv.append(planetImg);
 
   const brandDiv = document.createElement('div');
@@ -24,7 +27,7 @@ export const register = (onNavigate) => {
 
   const brand = document.createElement('img');
   brand.className = 'brand';
-  brand.src = '../Images/space-white.png';
+  brand.src = logoWhite;
   brandDiv.append(brand);
 
   const sloganDiv = document.createElement('div');
@@ -46,7 +49,6 @@ export const register = (onNavigate) => {
   btnStartDiv.append(btnStart);
 
   // Form
-
   const formDiv = document.createElement('div');
   formDiv.className = 'container__form';
   homeDiv.append(formDiv)
@@ -61,7 +63,7 @@ export const register = (onNavigate) => {
 
   const icon = document.createElement('img');
   icon.className = 'icon';
-  icon.src = '../Images/icon.png';
+  icon.src = iconMiniaturePlanet;
   iconDiv.appendChild(icon);
 
   const titleDiv = document.createElement('div');
@@ -133,7 +135,6 @@ export const register = (onNavigate) => {
   // Action of button
   buttonDataRegister.addEventListener('click', (e) => {
     e.preventDefault();
-  // Obtiene el valor del campo de entrada de texto del nombre de usuario
     const username = inputUser.value;
     const email = inputEmail.value;
     const password = inputPassword.value;
@@ -174,7 +175,6 @@ export const register = (onNavigate) => {
         onNavigate('/feed');
       })
         .catch((error) => {
-          console.error(error);
           if (error.code === 'auth/email-already-in-use') {
             failureText.textContent = 'Email already in use';
           } else if (error.code === 'auth/invalid-email') {

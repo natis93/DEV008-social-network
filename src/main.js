@@ -1,5 +1,3 @@
-
-import { home } from './components/home.js';
 import { register } from './components/register.js';
 import { login } from './components/login.js';
 import { feed } from './components/feed.js';
@@ -21,7 +19,7 @@ const onNavigate = (pathname) => {
   rootDiv.appendChild(routes[pathname](onNavigate));
 };
 
-const component = routes[window.location.pathname]; /*const component = feed */
+const component = routes[window.location.pathname];
 window.onpopstate = () => {
   rootDiv.appendChild(component(onNavigate));
 };
