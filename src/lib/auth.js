@@ -1,12 +1,13 @@
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signInWithPopup,
   signInWithRedirect,
+  getRedirectResult,
   onAuthStateChanged,
   signOut
 } from 'firebase/auth';
 import { auth, provider } from './firebase';
-
 
 
 export const createUser = (email, password) => 
@@ -16,7 +17,10 @@ export const signInUser = (email, password) =>
   signInWithEmailAndPassword(auth, email, password);
 
 export const signInGoogle = () => 
-  signInWithRedirect(auth, provider); 
+  signInWithRedirect(auth, provider);
+
+getRedirectResult(auth);
+
 
 export const signOutSession = (onNavigate, pathName) => 
 signOut(auth)
